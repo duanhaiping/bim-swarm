@@ -119,5 +119,19 @@ public class UmsRoleController {
         List<UmsPermission> permissionList = roleService.listPermission(roleId);
         return CommonResult.success(permissionList);
     }
+    @ApiOperation("获取角色相关资源")
+    @RequestMapping(value = "/listResource/{roleId}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<UmsResource>> listResource(@PathVariable Long roleId) {
+        List<UmsResource> roleList = roleService.listResource(roleId);
+        return CommonResult.success(roleList);
+    }
 
+    @ApiOperation("给角色分配资源")
+    @RequestMapping(value = "/allocResource", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult allocResource(@RequestParam Long roleId, @RequestParam List<Long> resourceIds) {
+        int count = roleService.allocResource(roleId, resourceIds);
+        return CommonResult.success(count);
+    }
 }

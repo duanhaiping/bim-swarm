@@ -2,6 +2,7 @@ package com.cormen.bim.dao;
 
 import com.cormen.bim.model.UmsMenu;
 import com.cormen.bim.model.UmsPermission;
+import com.cormen.bim.model.UmsResource;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface UmsRoleDao {
 
     List<UmsPermission> getPermissionByRoleId(@Param("roleId") Long roleId);
 
+    /**
+     * 根据角色ID获取资源
+     */
+    List<UmsResource> getResourceListByRoleId(@Param("roleId") Long roleId);
 }

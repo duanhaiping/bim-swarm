@@ -2,6 +2,7 @@ package com.cormen.bim.service;
 
 import com.cormen.bim.model.UmsMenu;
 import com.cormen.bim.model.UmsPermission;
+import com.cormen.bim.model.UmsResource;
 import com.cormen.bim.model.UmsRole;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,4 +65,16 @@ public interface UmsRoleService {
     * 获取角色相关权限
     * */
     List<UmsPermission> listPermission(Long roleId);
+
+    /**
+     * 给角色分配资源
+     */
+    @Transactional
+    int allocResource(Long roleId, List<Long> resourceIds);
+
+    /**
+     * 获取角色相关资源
+     */
+    List<UmsResource> listResource(Long roleId);
+
 }

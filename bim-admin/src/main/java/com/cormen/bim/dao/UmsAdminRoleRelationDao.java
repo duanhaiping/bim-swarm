@@ -2,6 +2,7 @@ package com.cormen.bim.dao;
 
 import com.cormen.bim.model.UmsAdminRoleRelation;
 
+import com.cormen.bim.model.UmsResource;
 import com.cormen.bim.model.UmsRole;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,10 +26,10 @@ public interface UmsAdminRoleRelationDao {
     /**
      * 获取用户所有可访问资源
      */
-   /* List<UmsResource> getResourceList(@Param("adminId") Long adminId);*/
+    List<UmsResource> getResourceList(@Param("adminId") Long adminId);
 
     /**
      * 获取资源相关用户ID列表
      */
- /*   List<Long> getAdminIdList(@Param("resourceId") Long resourceId);*/
+   List<Long> getAdminIdList(@Param("resourceId") Long resourceId);
 }
