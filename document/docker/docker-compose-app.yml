@@ -1,0 +1,82 @@
+version: '3'
+services:
+  bim-admin:
+    image: bim/bim-admin:1.0-SNAPSHOT
+    container_name: bim-admin
+    ports:
+      - 8080:8080
+    volumes:
+      - /mydata/app/bim-admin/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - mysql:db #可以用db这个域名访问mysql服务
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务
+  bim-search:
+    image: bim/bim-search:1.0-SNAPSHOT
+    container_name: bim-search
+    ports:
+      - 8081:8081
+    volumes:
+      - /mydata/app/bim-search/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - elasticsearch:es #可以用es这个域名访问elasticsearch服务
+      - mysql:db #可以用db这个域名访问mysql服务
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务
+  bim-portal:
+    image: bim/bim-portal:1.0-SNAPSHOT
+    container_name: bim-portal
+    ports:
+      - 8085:8085
+    volumes:
+      - /mydata/app/bim-portal/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - redis:redis #可以用redis这个域名访问redis服务
+      - mongo:mongo #可以用mongo这个域名访问mongo服务
+      - mysql:db #可以用db这个域名访问mysql服务
+      - rabbitmq:rabbit #可以用rabbit这个域名访问rabbitmq服务
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务
+  bim-auth:
+    image: bim/bim-auth:1.0-SNAPSHOT
+    container_name: bim-auth
+    ports:
+      - 8401:8401
+    volumes:
+      - /mydata/app/bim-auth/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务
+  bim-gateway:
+    image: bim/bim-gateway:1.0-SNAPSHOT
+    container_name: bim-gateway
+    ports:
+      - 8201:8201
+    volumes:
+      - /mydata/app/bim-gateway/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - redis:redis #可以用redis这个域名访问redis服务
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务
+  bim-monitor:
+    image: bim/bim-monitor:1.0-SNAPSHOT
+    container_name: bim-monitor
+    ports:
+      - 8101:8101
+    volumes:
+      - /mydata/app/bim-monitor/logs:/var/logs
+      - /etc/localtime:/etc/localtime
+    environment:
+      - 'TZ="Asia/Shanghai"'
+    external_links:
+      - nacos-registry:nacos-registry #可以用nacos-registry这个域名访问nacos服务

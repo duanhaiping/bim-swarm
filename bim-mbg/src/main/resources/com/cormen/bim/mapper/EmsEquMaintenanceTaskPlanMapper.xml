@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cormen.bim.mapper.EmsEquMaintenanceTaskPlanMapper">
+  <resultMap id="BaseResultMap" type="com.cormen.bim.model.EmsEquMaintenanceTaskPlan">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="REGION_ID" jdbcType="INTEGER" property="regionId" />
+    <result column="EQUMENT_ID" jdbcType="INTEGER" property="equmentId" />
+    <result column="TASK_NAME" jdbcType="VARCHAR" property="taskName" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="FREQUENCY_TYPE" jdbcType="VARCHAR" property="frequencyType" />
+    <result column="FREQUENCY_NUMBER" jdbcType="INTEGER" property="frequencyNumber" />
+    <result column="AGENT" jdbcType="INTEGER" property="agent" />
+    <result column="FUNDS" jdbcType="DECIMAL" property="funds" />
+    <result column="INSPECTION" jdbcType="INTEGER" property="inspection" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="MAINPOINT" jdbcType="VARCHAR" property="mainpoint" />
+    <result column="TASK_STARTDATE" jdbcType="DATE" property="taskStartdate" />
+    <result column="TASK_ENDDATE" jdbcType="VARCHAR" property="taskEnddate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, REGION_ID, EQUMENT_ID, TASK_NAME, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+    TYPE, FREQUENCY_TYPE, FREQUENCY_NUMBER, AGENT, FUNDS, INSPECTION, ADDRESS, MAINPOINT, 
+    TASK_STARTDATE, TASK_ENDDATE
+  </sql>
+  <select id="selectByExample" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlanExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ems_equ_maintenance_task_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ems_equ_maintenance_task_plan
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ems_equ_maintenance_task_plan
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlanExample">
+    delete from ems_equ_maintenance_task_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlan">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ems_equ_maintenance_task_plan (REGION_ID, EQUMENT_ID, TASK_NAME, 
+      CREATED_BY, CREATED_TIME, UPDATED_BY, 
+      UPDATED_TIME, TYPE, FREQUENCY_TYPE, 
+      FREQUENCY_NUMBER, AGENT, FUNDS, 
+      INSPECTION, ADDRESS, MAINPOINT, 
+      TASK_STARTDATE, TASK_ENDDATE)
+    values (#{regionId,jdbcType=INTEGER}, #{equmentId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, #{frequencyType,jdbcType=VARCHAR}, 
+      #{frequencyNumber,jdbcType=INTEGER}, #{agent,jdbcType=INTEGER}, #{funds,jdbcType=DECIMAL}, 
+      #{inspection,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{mainpoint,jdbcType=VARCHAR}, 
+      #{taskStartdate,jdbcType=DATE}, #{taskEnddate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlan">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ems_equ_maintenance_task_plan
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        REGION_ID,
+      </if>
+      <if test="equmentId != null">
+        EQUMENT_ID,
+      </if>
+      <if test="taskName != null">
+        TASK_NAME,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="frequencyType != null">
+        FREQUENCY_TYPE,
+      </if>
+      <if test="frequencyNumber != null">
+        FREQUENCY_NUMBER,
+      </if>
+      <if test="agent != null">
+        AGENT,
+      </if>
+      <if test="funds != null">
+        FUNDS,
+      </if>
+      <if test="inspection != null">
+        INSPECTION,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="mainpoint != null">
+        MAINPOINT,
+      </if>
+      <if test="taskStartdate != null">
+        TASK_STARTDATE,
+      </if>
+      <if test="taskEnddate != null">
+        TASK_ENDDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="regionId != null">
+        #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="equmentId != null">
+        #{equmentId,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null">
+        #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyType != null">
+        #{frequencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyNumber != null">
+        #{frequencyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        #{agent,jdbcType=INTEGER},
+      </if>
+      <if test="funds != null">
+        #{funds,jdbcType=DECIMAL},
+      </if>
+      <if test="inspection != null">
+        #{inspection,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mainpoint != null">
+        #{mainpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStartdate != null">
+        #{taskStartdate,jdbcType=DATE},
+      </if>
+      <if test="taskEnddate != null">
+        #{taskEnddate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlanExample" resultType="java.lang.Long">
+    select count(*) from ems_equ_maintenance_task_plan
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ems_equ_maintenance_task_plan
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.regionId != null">
+        REGION_ID = #{record.regionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.equmentId != null">
+        EQUMENT_ID = #{record.equmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.taskName != null">
+        TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null">
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null">
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frequencyType != null">
+        FREQUENCY_TYPE = #{record.frequencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frequencyNumber != null">
+        FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.agent != null">
+        AGENT = #{record.agent,jdbcType=INTEGER},
+      </if>
+      <if test="record.funds != null">
+        FUNDS = #{record.funds,jdbcType=DECIMAL},
+      </if>
+      <if test="record.inspection != null">
+        INSPECTION = #{record.inspection,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainpoint != null">
+        MAINPOINT = #{record.mainpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskStartdate != null">
+        TASK_STARTDATE = #{record.taskStartdate,jdbcType=DATE},
+      </if>
+      <if test="record.taskEnddate != null">
+        TASK_ENDDATE = #{record.taskEnddate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ems_equ_maintenance_task_plan
+    set ID = #{record.id,jdbcType=BIGINT},
+      REGION_ID = #{record.regionId,jdbcType=INTEGER},
+      EQUMENT_ID = #{record.equmentId,jdbcType=INTEGER},
+      TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      FREQUENCY_TYPE = #{record.frequencyType,jdbcType=VARCHAR},
+      FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER},
+      AGENT = #{record.agent,jdbcType=INTEGER},
+      FUNDS = #{record.funds,jdbcType=DECIMAL},
+      INSPECTION = #{record.inspection,jdbcType=INTEGER},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      MAINPOINT = #{record.mainpoint,jdbcType=VARCHAR},
+      TASK_STARTDATE = #{record.taskStartdate,jdbcType=DATE},
+      TASK_ENDDATE = #{record.taskEnddate,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlan">
+    update ems_equ_maintenance_task_plan
+    <set>
+      <if test="regionId != null">
+        REGION_ID = #{regionId,jdbcType=INTEGER},
+      </if>
+      <if test="equmentId != null">
+        EQUMENT_ID = #{equmentId,jdbcType=INTEGER},
+      </if>
+      <if test="taskName != null">
+        TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyType != null">
+        FREQUENCY_TYPE = #{frequencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="frequencyNumber != null">
+        FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER},
+      </if>
+      <if test="agent != null">
+        AGENT = #{agent,jdbcType=INTEGER},
+      </if>
+      <if test="funds != null">
+        FUNDS = #{funds,jdbcType=DECIMAL},
+      </if>
+      <if test="inspection != null">
+        INSPECTION = #{inspection,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="mainpoint != null">
+        MAINPOINT = #{mainpoint,jdbcType=VARCHAR},
+      </if>
+      <if test="taskStartdate != null">
+        TASK_STARTDATE = #{taskStartdate,jdbcType=DATE},
+      </if>
+      <if test="taskEnddate != null">
+        TASK_ENDDATE = #{taskEnddate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cormen.bim.model.EmsEquMaintenanceTaskPlan">
+    update ems_equ_maintenance_task_plan
+    set REGION_ID = #{regionId,jdbcType=INTEGER},
+      EQUMENT_ID = #{equmentId,jdbcType=INTEGER},
+      TASK_NAME = #{taskName,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      TYPE = #{type,jdbcType=VARCHAR},
+      FREQUENCY_TYPE = #{frequencyType,jdbcType=VARCHAR},
+      FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER},
+      AGENT = #{agent,jdbcType=INTEGER},
+      FUNDS = #{funds,jdbcType=DECIMAL},
+      INSPECTION = #{inspection,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      MAINPOINT = #{mainpoint,jdbcType=VARCHAR},
+      TASK_STARTDATE = #{taskStartdate,jdbcType=DATE},
+      TASK_ENDDATE = #{taskEnddate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

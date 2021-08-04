@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cormen.bim.mapper.EmsEquipmentMapper">
+  <resultMap id="BaseResultMap" type="com.cormen.bim.model.EmsEquipment">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="REGION" jdbcType="INTEGER" property="region" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="State" jdbcType="VARCHAR" property="state" />
+    <result column="MAINTENANCE_CYCLE" jdbcType="VARCHAR" property="maintenanceCycle" />
+    <result column="WEIGHT" jdbcType="DECIMAL" property="weight" />
+    <result column="BIM_MODEL_CODE" jdbcType="VARCHAR" property="bimModelCode" />
+    <result column="MODEL_POSITION" jdbcType="VARCHAR" property="modelPosition" />
+    <result column="ISACTIVITY" jdbcType="VARCHAR" property="isactivity" />
+    <result column="USE_DATE" jdbcType="DATE" property="useDate" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cormen.bim.model.EmsEquipment">
+    <result column="SPECIFICATION" jdbcType="LONGVARCHAR" property="specification" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, REGION, NAME, CODE, TYPE, State, MAINTENANCE_CYCLE, WEIGHT, BIM_MODEL_CODE, MODEL_POSITION, 
+    ISACTIVITY, USE_DATE, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    SPECIFICATION
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.cormen.bim.model.EmsEquipmentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ems_equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.cormen.bim.model.EmsEquipmentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ems_equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ems_equipment
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ems_equipment
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cormen.bim.model.EmsEquipmentExample">
+    delete from ems_equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cormen.bim.model.EmsEquipment">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ems_equipment (REGION, NAME, CODE, 
+      TYPE, State, MAINTENANCE_CYCLE, 
+      WEIGHT, BIM_MODEL_CODE, MODEL_POSITION, 
+      ISACTIVITY, USE_DATE, CREATED_BY, 
+      CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
+      SPECIFICATION)
+    values (#{region,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{maintenanceCycle,jdbcType=VARCHAR}, 
+      #{weight,jdbcType=DECIMAL}, #{bimModelCode,jdbcType=VARCHAR}, #{modelPosition,jdbcType=VARCHAR}, 
+      #{isactivity,jdbcType=VARCHAR}, #{useDate,jdbcType=DATE}, #{createdBy,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{specification,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cormen.bim.model.EmsEquipment">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ems_equipment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="region != null">
+        REGION,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="maintenanceCycle != null">
+        MAINTENANCE_CYCLE,
+      </if>
+      <if test="weight != null">
+        WEIGHT,
+      </if>
+      <if test="bimModelCode != null">
+        BIM_MODEL_CODE,
+      </if>
+      <if test="modelPosition != null">
+        MODEL_POSITION,
+      </if>
+      <if test="isactivity != null">
+        ISACTIVITY,
+      </if>
+      <if test="useDate != null">
+        USE_DATE,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="specification != null">
+        SPECIFICATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="region != null">
+        #{region,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceCycle != null">
+        #{maintenanceCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="bimModelCode != null">
+        #{bimModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPosition != null">
+        #{modelPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="isactivity != null">
+        #{isactivity,jdbcType=VARCHAR},
+      </if>
+      <if test="useDate != null">
+        #{useDate,jdbcType=DATE},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="specification != null">
+        #{specification,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cormen.bim.model.EmsEquipmentExample" resultType="java.lang.Long">
+    select count(*) from ems_equipment
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ems_equipment
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.region != null">
+        REGION = #{record.region,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null">
+        State = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.maintenanceCycle != null">
+        MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null">
+        WEIGHT = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bimModelCode != null">
+        BIM_MODEL_CODE = #{record.bimModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelPosition != null">
+        MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isactivity != null">
+        ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useDate != null">
+        USE_DATE = #{record.useDate,jdbcType=DATE},
+      </if>
+      <if test="record.createdBy != null">
+        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdTime != null">
+        CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedTime != null">
+        UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.specification != null">
+        SPECIFICATION = #{record.specification,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update ems_equipment
+    set ID = #{record.id,jdbcType=INTEGER},
+      REGION = #{record.region,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=VARCHAR},
+      MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
+      WEIGHT = #{record.weight,jdbcType=DECIMAL},
+      BIM_MODEL_CODE = #{record.bimModelCode,jdbcType=VARCHAR},
+      MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
+      ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
+      USE_DATE = #{record.useDate,jdbcType=DATE},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
+      SPECIFICATION = #{record.specification,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ems_equipment
+    set ID = #{record.id,jdbcType=INTEGER},
+      REGION = #{record.region,jdbcType=INTEGER},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      State = #{record.state,jdbcType=VARCHAR},
+      MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
+      WEIGHT = #{record.weight,jdbcType=DECIMAL},
+      BIM_MODEL_CODE = #{record.bimModelCode,jdbcType=VARCHAR},
+      MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
+      ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
+      USE_DATE = #{record.useDate,jdbcType=DATE},
+      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cormen.bim.model.EmsEquipment">
+    update ems_equipment
+    <set>
+      <if test="region != null">
+        REGION = #{region,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        State = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="maintenanceCycle != null">
+        MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        WEIGHT = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="bimModelCode != null">
+        BIM_MODEL_CODE = #{bimModelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="modelPosition != null">
+        MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="isactivity != null">
+        ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
+      </if>
+      <if test="useDate != null">
+        USE_DATE = #{useDate,jdbcType=DATE},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="specification != null">
+        SPECIFICATION = #{specification,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cormen.bim.model.EmsEquipment">
+    update ems_equipment
+    set REGION = #{region,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      State = #{state,jdbcType=VARCHAR},
+      MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      BIM_MODEL_CODE = #{bimModelCode,jdbcType=VARCHAR},
+      MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
+      ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
+      USE_DATE = #{useDate,jdbcType=DATE},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      SPECIFICATION = #{specification,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cormen.bim.model.EmsEquipment">
+    update ems_equipment
+    set REGION = #{region,jdbcType=INTEGER},
+      NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      State = #{state,jdbcType=VARCHAR},
+      MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      BIM_MODEL_CODE = #{bimModelCode,jdbcType=VARCHAR},
+      MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
+      ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
+      USE_DATE = #{useDate,jdbcType=DATE},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

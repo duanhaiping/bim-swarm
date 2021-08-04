@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cormen.bim.dao.UmsRoleDao">
+
+    <select id="getMenuList" resultType="com.cormen.bim.model.UmsMenu">
+        SELECT
+            m.id id,
+            m.parent_id parentId,
+            m.create_time createTime,
+            m.title title,
+            m.level level,
+            m.sort sort,
+            m.name name,
+            m.icon icon,
+            m.hidden hidden
+        FROM
+            ums_admin_role_relation arr
+                LEFT JOIN ums_role r ON arr.role_id = r.id
+                LEFT JOIN ums_role_menu_relation rmr ON r.id = rmr.role_id
+                LEFT JOIN ums_menu m ON rmr.menu_id = m.id
+        WHERE
+            arr.admin_id = #{adminId}
+          AND m.id IS NOT NULL
+        GROUP BY
+            m.id
+    </select>
+    <select id="getMenuListByRoleId" resultType="com.cormen.bim.model.UmsMenu">
+        SELECT
+            m.id id,
+            m.parent_id parentId,
+            m.create_time createTime,
+            m.title title,
+            m.level level,
+            m.sort sort,
+            m.name name,
+            m.icon icon,
+            m.hidden hidden
+        FROM
+             ums_role_menu_relation rmr
+                LEFT JOIN ums_menu m ON rmr.menu_id = m.id
+        WHERE
+            rmr.role_id = #{roleId}
+          AND m.id IS NOT NULL
+        GROUP BY
+            m.id
+    </select>
+    <select id="getPermissionByRoleId" resultType="com.cormen.bim.model.UmsPermission">
+        SELECT
+            p.id,
+            p.pid,
+            p.name,
+            p.value,
+            p.icon,
+            p.`type`,
+            p.uri,
+            p.`status`,
+            p.create_time,
+            p.sort
+        FROM ums_role_permission_relation  rmr
+            LEFT JOIN ums_permission p ON rmr.permission_id = p.id
+        WHERE
+            rmr.role_id = #{roleId}
+        AND p.id  IS NOT NULL
+        GROUP BY
+            p.id
+    </select>
+</mapper>

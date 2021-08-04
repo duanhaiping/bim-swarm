@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cormen.bim.mapper.PmsPatrolLocationMapper">
+  <resultMap id="BaseResultMap" type="com.cormen.bim.model.PmsPatrolLocation">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="REGION" jdbcType="INTEGER" property="region" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="PATROL_POINT" jdbcType="VARCHAR" property="patrolPoint" />
+    <result column="SIGN_TYPE" jdbcType="VARCHAR" property="signType" />
+    <result column="BIM_POINT" jdbcType="VARCHAR" property="bimPoint" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, REGION, ADDRESS, CODE, PATROL_POINT, SIGN_TYPE, BIM_POINT
+  </sql>
+  <select id="selectByExample" parameterType="com.cormen.bim.model.PmsPatrolLocationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pms_patrol_location
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pms_patrol_location
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pms_patrol_location
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cormen.bim.model.PmsPatrolLocationExample">
+    delete from pms_patrol_location
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cormen.bim.model.PmsPatrolLocation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_patrol_location (REGION, ADDRESS, CODE, 
+      PATROL_POINT, SIGN_TYPE, BIM_POINT
+      )
+    values (#{region,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{patrolPoint,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, #{bimPoint,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cormen.bim.model.PmsPatrolLocation">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_patrol_location
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="region != null">
+        REGION,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="patrolPoint != null">
+        PATROL_POINT,
+      </if>
+      <if test="signType != null">
+        SIGN_TYPE,
+      </if>
+      <if test="bimPoint != null">
+        BIM_POINT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="region != null">
+        #{region,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPoint != null">
+        #{patrolPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="bimPoint != null">
+        #{bimPoint,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cormen.bim.model.PmsPatrolLocationExample" resultType="java.lang.Long">
+    select count(*) from pms_patrol_location
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update pms_patrol_location
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.region != null">
+        REGION = #{record.region,jdbcType=INTEGER},
+      </if>
+      <if test="record.address != null">
+        ADDRESS = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        CODE = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patrolPoint != null">
+        PATROL_POINT = #{record.patrolPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signType != null">
+        SIGN_TYPE = #{record.signType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bimPoint != null">
+        BIM_POINT = #{record.bimPoint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update pms_patrol_location
+    set ID = #{record.id,jdbcType=INTEGER},
+      REGION = #{record.region,jdbcType=INTEGER},
+      ADDRESS = #{record.address,jdbcType=VARCHAR},
+      CODE = #{record.code,jdbcType=VARCHAR},
+      PATROL_POINT = #{record.patrolPoint,jdbcType=VARCHAR},
+      SIGN_TYPE = #{record.signType,jdbcType=VARCHAR},
+      BIM_POINT = #{record.bimPoint,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cormen.bim.model.PmsPatrolLocation">
+    update pms_patrol_location
+    <set>
+      <if test="region != null">
+        REGION = #{region,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="patrolPoint != null">
+        PATROL_POINT = #{patrolPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null">
+        SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="bimPoint != null">
+        BIM_POINT = #{bimPoint,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cormen.bim.model.PmsPatrolLocation">
+    update pms_patrol_location
+    set REGION = #{region,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      PATROL_POINT = #{patrolPoint,jdbcType=VARCHAR},
+      SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      BIM_POINT = #{bimPoint,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bim-monitor-service
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: bim-monitor
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8101
+      targetPort: 8101
