@@ -23,7 +23,6 @@ public class EqumentParam {
     @NotEmpty
     @ApiModelProperty(value = "设备名称")
     private String name;
-
     @NotEmpty
     @ApiModelProperty(value = "设备编码")
     private String code;
@@ -37,6 +36,12 @@ public class EqumentParam {
     @ApiModelProperty(value = "预计保养周期")
     private String maintenanceCycle;
 
+    @ApiModelProperty(value = "材料")
+    private String material;
+
+    @ApiModelProperty(value = "安装位置")
+    private String placement;
+
     @ApiModelProperty(value = "重量")
     private BigDecimal weight;
 
@@ -46,12 +51,54 @@ public class EqumentParam {
     @ApiModelProperty(value = "BIM设备位置")
     private String modelPosition;
 
-    @ApiModelProperty(value = "是否启用")
-    private String isactivity;
+    @ApiModelProperty(value = "安装日期")
+    private Date installTime;
 
-    @ApiModelProperty(value = "启用时间")
-    private Date useDate;
+    @ApiModelProperty(value = "报废日期")
+    private Date scrapDate;
+
+    @ApiModelProperty(value = "使用年限")
+    private Integer lifeUseful;
+
+    @ApiModelProperty(value = "已用月份")
+    private Integer monthsUsed;
+
+    @ApiModelProperty(value = "维修次数")
+    private Integer repairTimes;
+
+    @ApiModelProperty(value = "保养次数")
+    private Integer maintainTimes;
+
+    @ApiModelProperty(value = "设备原值")
+    private Integer originalPrice;
+
+    @ApiModelProperty(value = "已提旧职")
+    private Integer oldPrice;
+
+    @ApiModelProperty(value = "设备净值")
+    private Integer equity;
+
+    @ApiModelProperty(value = "维保单位")
+    private String repairOrganization;
+
+    @ApiModelProperty(value = "维保电话")
+    private String repairTel;
+
+    @ApiModelProperty(value = "维保单位地址")
+    private String repairAddress;
+
+    @ApiModelProperty(value = "设备保养人")
+    private Long repairBy;
+
+    @ApiModelProperty(value = "生产厂家")
+    private String manufacturer;
+
+    @ApiModelProperty(value = "厂家地址")
+    private String manufacturerAddress;
 
     @ApiModelProperty(value = "规格型号")
     private String specification;
+
+    @ApiModelProperty(value = "标准")
+    private String repairStandard;
 }

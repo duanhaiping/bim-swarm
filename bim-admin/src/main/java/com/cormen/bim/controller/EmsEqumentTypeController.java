@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@Api(tags = "EmsEqumentTypeController", description = "设备类型管理")
+@Api(tags = "设备类型管理", description = "设备类型管理")
 @RequestMapping("/equ-type")
 public class EmsEqumentTypeController {
 
@@ -34,14 +34,10 @@ public class EmsEqumentTypeController {
 
     @ApiOperation("添加设备类型")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-
+    @ResponseBody
     public CommonResult create(@RequestBody EqumentTypeParam typeParam) {
         int count = emsEqumentTypeService.addEquType(typeParam);
-        if (count > 0) {
-            return CommonResult.success(count);
-        } else {
-            return CommonResult.failed();
-        }
+        return CommonResult.success(count);
     }
 
 
@@ -50,11 +46,7 @@ public class EmsEqumentTypeController {
     @ResponseBody
     public CommonResult update(@PathVariable int id,@RequestBody EqumentTypeParam typeParam) {
         int count = emsEqumentTypeService.update( id ,typeParam);
-        if (count > 0) {
-            return CommonResult.success(count);
-        } else {
-            return CommonResult.failed();
-        }
+        return CommonResult.success(count);
     }
 
     @ApiOperation("删除设备类型")

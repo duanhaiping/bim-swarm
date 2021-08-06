@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class EmsType implements Serializable {
+    @ApiModelProperty(value = "ID")
     private Integer id;
 
     private String name;

@@ -25,7 +25,7 @@ import java.util.Map;
  * Created by cormen on 2020/7/17.
  */
 @RestController
-@Api(tags = "AuthController", description = "认证中心登录认证")
+@Api(tags = "认证中心登录认证", description = "认证中心登录认证")
 @RequestMapping("/oauth")
 public class AuthController {
     @Autowired

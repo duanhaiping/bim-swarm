@@ -9,7 +9,7 @@
     <result column="PLAN_END_DATE" jdbcType="TIMESTAMP" property="planEndDate" />
     <result column="ACTUAL_START_DATE" jdbcType="TIMESTAMP" property="actualStartDate" />
     <result column="ACTUAL_END_DATE" jdbcType="TIMESTAMP" property="actualEndDate" />
-    <result column="AGENT" jdbcType="INTEGER" property="agent" />
+    <result column="AGENT" jdbcType="BIGINT" property="agent" />
     <result column="PATH_ID" jdbcType="INTEGER" property="pathId" />
     <result column="BIM_PATH" jdbcType="VARCHAR" property="bimPath" />
     <result column="STATE" jdbcType="VARCHAR" property="state" />
@@ -116,7 +116,7 @@
       STATE)
     values (#{regionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{planStartDate,jdbcType=TIMESTAMP}, 
       #{planEndDate,jdbcType=TIMESTAMP}, #{actualStartDate,jdbcType=TIMESTAMP}, #{actualEndDate,jdbcType=TIMESTAMP}, 
-      #{agent,jdbcType=INTEGER}, #{pathId,jdbcType=INTEGER}, #{bimPath,jdbcType=VARCHAR}, 
+      #{agent,jdbcType=BIGINT}, #{pathId,jdbcType=INTEGER}, #{bimPath,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cormen.bim.model.PmsPatrolTask">
@@ -176,7 +176,7 @@
         #{actualEndDate,jdbcType=TIMESTAMP},
       </if>
       <if test="agent != null">
-        #{agent,jdbcType=INTEGER},
+        #{agent,jdbcType=BIGINT},
       </if>
       <if test="pathId != null">
         #{pathId,jdbcType=INTEGER},
@@ -220,7 +220,7 @@
         ACTUAL_END_DATE = #{record.actualEndDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.agent != null">
-        AGENT = #{record.agent,jdbcType=INTEGER},
+        AGENT = #{record.agent,jdbcType=BIGINT},
       </if>
       <if test="record.pathId != null">
         PATH_ID = #{record.pathId,jdbcType=INTEGER},
@@ -245,7 +245,7 @@
       PLAN_END_DATE = #{record.planEndDate,jdbcType=TIMESTAMP},
       ACTUAL_START_DATE = #{record.actualStartDate,jdbcType=TIMESTAMP},
       ACTUAL_END_DATE = #{record.actualEndDate,jdbcType=TIMESTAMP},
-      AGENT = #{record.agent,jdbcType=INTEGER},
+      AGENT = #{record.agent,jdbcType=BIGINT},
       PATH_ID = #{record.pathId,jdbcType=INTEGER},
       BIM_PATH = #{record.bimPath,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=VARCHAR}
@@ -275,7 +275,7 @@
         ACTUAL_END_DATE = #{actualEndDate,jdbcType=TIMESTAMP},
       </if>
       <if test="agent != null">
-        AGENT = #{agent,jdbcType=INTEGER},
+        AGENT = #{agent,jdbcType=BIGINT},
       </if>
       <if test="pathId != null">
         PATH_ID = #{pathId,jdbcType=INTEGER},
@@ -297,7 +297,7 @@
       PLAN_END_DATE = #{planEndDate,jdbcType=TIMESTAMP},
       ACTUAL_START_DATE = #{actualStartDate,jdbcType=TIMESTAMP},
       ACTUAL_END_DATE = #{actualEndDate,jdbcType=TIMESTAMP},
-      AGENT = #{agent,jdbcType=INTEGER},
+      AGENT = #{agent,jdbcType=BIGINT},
       PATH_ID = #{pathId,jdbcType=INTEGER},
       BIM_PATH = #{bimPath,jdbcType=VARCHAR},
       STATE = #{state,jdbcType=VARCHAR}

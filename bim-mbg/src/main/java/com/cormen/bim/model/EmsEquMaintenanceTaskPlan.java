@@ -15,13 +15,13 @@ public class EmsEquMaintenanceTaskPlan implements Serializable {
     private String taskName;
 
     @ApiModelProperty(value = "创建人")
-    private String createdBy;
+    private Long createdBy;
 
     @ApiModelProperty(value = "创建时间")
     private Date createdTime;
 
     @ApiModelProperty(value = "更新人")
-    private String updatedBy;
+    private Long updatedBy;
 
     @ApiModelProperty(value = "更新时间")
     private Date updatedTime;
@@ -36,7 +36,7 @@ public class EmsEquMaintenanceTaskPlan implements Serializable {
     private Integer frequencyNumber;
 
     @ApiModelProperty(value = "经办人")
-    private Integer agent;
+    private Long agent;
 
     private BigDecimal funds;
 
@@ -86,11 +86,11 @@ public class EmsEquMaintenanceTaskPlan implements Serializable {
         this.taskName = taskName;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -102,11 +102,11 @@ public class EmsEquMaintenanceTaskPlan implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -142,11 +142,11 @@ public class EmsEquMaintenanceTaskPlan implements Serializable {
         this.frequencyNumber = frequencyNumber;
     }
 
-    public Integer getAgent() {
+    public Long getAgent() {
         return agent;
     }
 
-    public void setAgent(Integer agent) {
+    public void setAgent(Long agent) {
         this.agent = agent;
     }
 

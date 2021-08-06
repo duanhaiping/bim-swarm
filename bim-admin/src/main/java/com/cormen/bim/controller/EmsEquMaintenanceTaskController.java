@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @Controller
-@Api(tags = "EmsEquMainTenanceTaskController", description = "设备保养维护任务")
+@Api(tags = "设备保养维护任务管理", description = "设备保养维护任务")
 @RequestMapping("/equ-task")
 public class EmsEquMaintenanceTaskController {
 

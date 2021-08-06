@@ -27,6 +27,12 @@ public class EmsEquipment implements Serializable {
     @ApiModelProperty(value = "预计保养周期")
     private String maintenanceCycle;
 
+    @ApiModelProperty(value = "材料")
+    private String material;
+
+    @ApiModelProperty(value = "安装位置")
+    private String placement;
+
     @ApiModelProperty(value = "重量")
     private BigDecimal weight;
 
@@ -36,26 +42,68 @@ public class EmsEquipment implements Serializable {
     @ApiModelProperty(value = "BIM设备位置")
     private String modelPosition;
 
-    @ApiModelProperty(value = "是否启用")
-    private String isactivity;
+    @ApiModelProperty(value = "安装日期")
+    private Date installTime;
 
-    @ApiModelProperty(value = "启用时间")
-    private Date useDate;
+    @ApiModelProperty(value = "报废日期")
+    private Date scrapDate;
+
+    @ApiModelProperty(value = "使用年限")
+    private Integer lifeUseful;
+
+    @ApiModelProperty(value = "已用月份")
+    private Integer monthsUsed;
+
+    @ApiModelProperty(value = "维修次数")
+    private Integer repairTimes;
+
+    @ApiModelProperty(value = "保养次数")
+    private Integer maintainTimes;
+
+    @ApiModelProperty(value = "设备原值")
+    private Integer originalPrice;
+
+    @ApiModelProperty(value = "已提旧职")
+    private Integer oldPrice;
+
+    @ApiModelProperty(value = "设备净值")
+    private Integer equity;
+
+    @ApiModelProperty(value = "维保单位")
+    private String repairOrganization;
+
+    @ApiModelProperty(value = "维保电话")
+    private String repairTel;
+
+    @ApiModelProperty(value = "维保单位地址")
+    private String repairAddress;
+
+    @ApiModelProperty(value = "设备保养人")
+    private Long repairBy;
+
+    @ApiModelProperty(value = "生产厂家")
+    private String manufacturer;
+
+    @ApiModelProperty(value = "厂家地址")
+    private String manufacturerAddress;
 
     @ApiModelProperty(value = "创建人")
-    private String createdBy;
+    private Long createdBy;
 
     @ApiModelProperty(value = "创建时间")
     private Date createdTime;
 
     @ApiModelProperty(value = "更新人")
-    private String updatedBy;
+    private Long updatedBy;
 
     @ApiModelProperty(value = "更新时间")
     private Date updatedTime;
 
     @ApiModelProperty(value = "规格型号")
     private String specification;
+
+    @ApiModelProperty(value = "标准")
+    private String repairStandard;
 
     private static final long serialVersionUID = 1L;
 
@@ -115,6 +163,22 @@ public class EmsEquipment implements Serializable {
         this.maintenanceCycle = maintenanceCycle;
     }
 
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
+
+    public String getPlacement() {
+        return placement;
+    }
+
+    public void setPlacement(String placement) {
+        this.placement = placement;
+    }
+
     public BigDecimal getWeight() {
         return weight;
     }
@@ -139,27 +203,131 @@ public class EmsEquipment implements Serializable {
         this.modelPosition = modelPosition;
     }
 
-    public String getIsactivity() {
-        return isactivity;
+    public Date getInstallTime() {
+        return installTime;
     }
 
-    public void setIsactivity(String isactivity) {
-        this.isactivity = isactivity;
+    public void setInstallTime(Date installTime) {
+        this.installTime = installTime;
     }
 
-    public Date getUseDate() {
-        return useDate;
+    public Date getScrapDate() {
+        return scrapDate;
     }
 
-    public void setUseDate(Date useDate) {
-        this.useDate = useDate;
+    public void setScrapDate(Date scrapDate) {
+        this.scrapDate = scrapDate;
     }
 
-    public String getCreatedBy() {
+    public Integer getLifeUseful() {
+        return lifeUseful;
+    }
+
+    public void setLifeUseful(Integer lifeUseful) {
+        this.lifeUseful = lifeUseful;
+    }
+
+    public Integer getMonthsUsed() {
+        return monthsUsed;
+    }
+
+    public void setMonthsUsed(Integer monthsUsed) {
+        this.monthsUsed = monthsUsed;
+    }
+
+    public Integer getRepairTimes() {
+        return repairTimes;
+    }
+
+    public void setRepairTimes(Integer repairTimes) {
+        this.repairTimes = repairTimes;
+    }
+
+    public Integer getMaintainTimes() {
+        return maintainTimes;
+    }
+
+    public void setMaintainTimes(Integer maintainTimes) {
+        this.maintainTimes = maintainTimes;
+    }
+
+    public Integer getOriginalPrice() {
+        return originalPrice;
+    }
+
+    public void setOriginalPrice(Integer originalPrice) {
+        this.originalPrice = originalPrice;
+    }
+
+    public Integer getOldPrice() {
+        return oldPrice;
+    }
+
+    public void setOldPrice(Integer oldPrice) {
+        this.oldPrice = oldPrice;
+    }
+
+    public Integer getEquity() {
+        return equity;
+    }
+
+    public void setEquity(Integer equity) {
+        this.equity = equity;
+    }
+
+    public String getRepairOrganization() {
+        return repairOrganization;
+    }
+
+    public void setRepairOrganization(String repairOrganization) {
+        this.repairOrganization = repairOrganization;
+    }
+
+    public String getRepairTel() {
+        return repairTel;
+    }
+
+    public void setRepairTel(String repairTel) {
+        this.repairTel = repairTel;
+    }
+
+    public String getRepairAddress() {
+        return repairAddress;
+    }
+
+    public void setRepairAddress(String repairAddress) {
+        this.repairAddress = repairAddress;
+    }
+
+    public Long getRepairBy() {
+        return repairBy;
+    }
+
+    public void setRepairBy(Long repairBy) {
+        this.repairBy = repairBy;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getManufacturerAddress() {
+        return manufacturerAddress;
+    }
+
+    public void setManufacturerAddress(String manufacturerAddress) {
+        this.manufacturerAddress = manufacturerAddress;
+    }
+
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -171,11 +339,11 @@ public class EmsEquipment implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 
@@ -195,6 +363,14 @@ public class EmsEquipment implements Serializable {
         this.specification = specification;
     }
 
+    public String getRepairStandard() {
+        return repairStandard;
+    }
+
+    public void setRepairStandard(String repairStandard) {
+        this.repairStandard = repairStandard;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -208,16 +384,32 @@ public class EmsEquipment implements Serializable {
         sb.append(", type=").append(type);
         sb.append(", state=").append(state);
         sb.append(", maintenanceCycle=").append(maintenanceCycle);
+        sb.append(", material=").append(material);
+        sb.append(", placement=").append(placement);
         sb.append(", weight=").append(weight);
         sb.append(", bimModelCode=").append(bimModelCode);
         sb.append(", modelPosition=").append(modelPosition);
-        sb.append(", isactivity=").append(isactivity);
-        sb.append(", useDate=").append(useDate);
+        sb.append(", installTime=").append(installTime);
+        sb.append(", scrapDate=").append(scrapDate);
+        sb.append(", lifeUseful=").append(lifeUseful);
+        sb.append(", monthsUsed=").append(monthsUsed);
+        sb.append(", repairTimes=").append(repairTimes);
+        sb.append(", maintainTimes=").append(maintainTimes);
+        sb.append(", originalPrice=").append(originalPrice);
+        sb.append(", oldPrice=").append(oldPrice);
+        sb.append(", equity=").append(equity);
+        sb.append(", repairOrganization=").append(repairOrganization);
+        sb.append(", repairTel=").append(repairTel);
+        sb.append(", repairAddress=").append(repairAddress);
+        sb.append(", repairBy=").append(repairBy);
+        sb.append(", manufacturer=").append(manufacturer);
+        sb.append(", manufacturerAddress=").append(manufacturerAddress);
         sb.append(", createdBy=").append(createdBy);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", updatedBy=").append(updatedBy);
         sb.append(", updatedTime=").append(updatedTime);
         sb.append(", specification=").append(specification);
+        sb.append(", repairStandard=").append(repairStandard);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

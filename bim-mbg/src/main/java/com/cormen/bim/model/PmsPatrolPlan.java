@@ -24,7 +24,7 @@ public class PmsPatrolPlan implements Serializable {
     private String bimPath;
 
     @ApiModelProperty(value = "经办人")
-    private Integer agent;
+    private Long agent;
 
     @ApiModelProperty(value = "保养频率次数")
     private Integer frequencyNumber;
@@ -95,11 +95,11 @@ public class PmsPatrolPlan implements Serializable {
         this.bimPath = bimPath;
     }
 
-    public Integer getAgent() {
+    public Long getAgent() {
         return agent;
     }
 
-    public void setAgent(Integer agent) {
+    public void setAgent(Long agent) {
         this.agent = agent;
     }
 

@@ -21,7 +21,7 @@ public class PmsPatrolTask implements Serializable {
     private Date actualEndDate;
 
     @ApiModelProperty(value = "经办人")
-    private Integer agent;
+    private Long agent;
 
     private Integer pathId;
 
@@ -87,11 +87,11 @@ public class PmsPatrolTask implements Serializable {
         this.actualEndDate = actualEndDate;
     }
 
-    public Integer getAgent() {
+    public Long getAgent() {
         return agent;
     }
 
-    public void setAgent(Integer agent) {
+    public void setAgent(Long agent) {
         this.agent = agent;
     }
 

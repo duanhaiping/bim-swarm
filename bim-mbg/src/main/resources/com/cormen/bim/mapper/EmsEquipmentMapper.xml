@@ -9,18 +9,34 @@
     <result column="TYPE" jdbcType="VARCHAR" property="type" />
     <result column="State" jdbcType="VARCHAR" property="state" />
     <result column="MAINTENANCE_CYCLE" jdbcType="VARCHAR" property="maintenanceCycle" />
+    <result column="MATERIAL" jdbcType="VARCHAR" property="material" />
+    <result column="PLACEMENT" jdbcType="VARCHAR" property="placement" />
     <result column="WEIGHT" jdbcType="DECIMAL" property="weight" />
     <result column="BIM_MODEL_CODE" jdbcType="VARCHAR" property="bimModelCode" />
     <result column="MODEL_POSITION" jdbcType="VARCHAR" property="modelPosition" />
-    <result column="ISACTIVITY" jdbcType="VARCHAR" property="isactivity" />
-    <result column="USE_DATE" jdbcType="DATE" property="useDate" />
-    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="INSTALL_TIME" jdbcType="DATE" property="installTime" />
+    <result column="SCRAP_DATE" jdbcType="DATE" property="scrapDate" />
+    <result column="LIFE_USEFUL" jdbcType="INTEGER" property="lifeUseful" />
+    <result column="MONTHS_USED" jdbcType="INTEGER" property="monthsUsed" />
+    <result column="REPAIR_TIMES" jdbcType="INTEGER" property="repairTimes" />
+    <result column="MAINTAIN_TIMES" jdbcType="INTEGER" property="maintainTimes" />
+    <result column="ORIGINAL_PRICE" jdbcType="INTEGER" property="originalPrice" />
+    <result column="OLD_PRICE" jdbcType="INTEGER" property="oldPrice" />
+    <result column="EQUITY" jdbcType="INTEGER" property="equity" />
+    <result column="REPAIR_ORGANIZATION" jdbcType="VARCHAR" property="repairOrganization" />
+    <result column="REPAIR_TEL" jdbcType="VARCHAR" property="repairTel" />
+    <result column="REPAIR_ADDRESS" jdbcType="VARCHAR" property="repairAddress" />
+    <result column="REPAIR_BY" jdbcType="BIGINT" property="repairBy" />
+    <result column="MANUFACTURER" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="MANUFACTURER_ADDRESS" jdbcType="VARCHAR" property="manufacturerAddress" />
+    <result column="CREATED_BY" jdbcType="BIGINT" property="createdBy" />
     <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_BY" jdbcType="BIGINT" property="updatedBy" />
     <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cormen.bim.model.EmsEquipment">
     <result column="SPECIFICATION" jdbcType="LONGVARCHAR" property="specification" />
+    <result column="REPAIR_STANDARD" jdbcType="LONGVARCHAR" property="repairStandard" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,11 +97,14 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, REGION, NAME, CODE, TYPE, State, MAINTENANCE_CYCLE, WEIGHT, BIM_MODEL_CODE, MODEL_POSITION, 
-    ISACTIVITY, USE_DATE, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME
+    ID, REGION, NAME, CODE, TYPE, State, MAINTENANCE_CYCLE, MATERIAL, PLACEMENT, WEIGHT, 
+    BIM_MODEL_CODE, MODEL_POSITION, INSTALL_TIME, SCRAP_DATE, LIFE_USEFUL, MONTHS_USED, 
+    REPAIR_TIMES, MAINTAIN_TIMES, ORIGINAL_PRICE, OLD_PRICE, EQUITY, REPAIR_ORGANIZATION, 
+    REPAIR_TEL, REPAIR_ADDRESS, REPAIR_BY, MANUFACTURER, MANUFACTURER_ADDRESS, CREATED_BY, 
+    CREATED_TIME, UPDATED_BY, UPDATED_TIME
   </sql>
   <sql id="Blob_Column_List">
-    SPECIFICATION
+    SPECIFICATION, REPAIR_STANDARD
   </sql>
   <select id="selectByExampleWithBLOBs" parameterType="com.cormen.bim.model.EmsEquipmentExample" resultMap="ResultMapWithBLOBs">
     select
@@ -141,16 +160,26 @@
     </selectKey>
     insert into ems_equipment (REGION, NAME, CODE, 
       TYPE, State, MAINTENANCE_CYCLE, 
-      WEIGHT, BIM_MODEL_CODE, MODEL_POSITION, 
-      ISACTIVITY, USE_DATE, CREATED_BY, 
+      MATERIAL, PLACEMENT, WEIGHT, 
+      BIM_MODEL_CODE, MODEL_POSITION, INSTALL_TIME, 
+      SCRAP_DATE, LIFE_USEFUL, MONTHS_USED, 
+      REPAIR_TIMES, MAINTAIN_TIMES, ORIGINAL_PRICE, 
+      OLD_PRICE, EQUITY, REPAIR_ORGANIZATION, 
+      REPAIR_TEL, REPAIR_ADDRESS, REPAIR_BY, 
+      MANUFACTURER, MANUFACTURER_ADDRESS, CREATED_BY, 
       CREATED_TIME, UPDATED_BY, UPDATED_TIME, 
-      SPECIFICATION)
+      SPECIFICATION, REPAIR_STANDARD)
     values (#{region,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{maintenanceCycle,jdbcType=VARCHAR}, 
-      #{weight,jdbcType=DECIMAL}, #{bimModelCode,jdbcType=VARCHAR}, #{modelPosition,jdbcType=VARCHAR}, 
-      #{isactivity,jdbcType=VARCHAR}, #{useDate,jdbcType=DATE}, #{createdBy,jdbcType=VARCHAR}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}, 
-      #{specification,jdbcType=LONGVARCHAR})
+      #{material,jdbcType=VARCHAR}, #{placement,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, 
+      #{bimModelCode,jdbcType=VARCHAR}, #{modelPosition,jdbcType=VARCHAR}, #{installTime,jdbcType=DATE}, 
+      #{scrapDate,jdbcType=DATE}, #{lifeUseful,jdbcType=INTEGER}, #{monthsUsed,jdbcType=INTEGER}, 
+      #{repairTimes,jdbcType=INTEGER}, #{maintainTimes,jdbcType=INTEGER}, #{originalPrice,jdbcType=INTEGER}, 
+      #{oldPrice,jdbcType=INTEGER}, #{equity,jdbcType=INTEGER}, #{repairOrganization,jdbcType=VARCHAR}, 
+      #{repairTel,jdbcType=VARCHAR}, #{repairAddress,jdbcType=VARCHAR}, #{repairBy,jdbcType=BIGINT}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{manufacturerAddress,jdbcType=VARCHAR}, #{createdBy,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=BIGINT}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{specification,jdbcType=LONGVARCHAR}, #{repairStandard,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cormen.bim.model.EmsEquipment">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -176,6 +205,12 @@
       <if test="maintenanceCycle != null">
         MAINTENANCE_CYCLE,
       </if>
+      <if test="material != null">
+        MATERIAL,
+      </if>
+      <if test="placement != null">
+        PLACEMENT,
+      </if>
       <if test="weight != null">
         WEIGHT,
       </if>
@@ -185,11 +220,50 @@
       <if test="modelPosition != null">
         MODEL_POSITION,
       </if>
-      <if test="isactivity != null">
-        ISACTIVITY,
+      <if test="installTime != null">
+        INSTALL_TIME,
       </if>
-      <if test="useDate != null">
-        USE_DATE,
+      <if test="scrapDate != null">
+        SCRAP_DATE,
+      </if>
+      <if test="lifeUseful != null">
+        LIFE_USEFUL,
+      </if>
+      <if test="monthsUsed != null">
+        MONTHS_USED,
+      </if>
+      <if test="repairTimes != null">
+        REPAIR_TIMES,
+      </if>
+      <if test="maintainTimes != null">
+        MAINTAIN_TIMES,
+      </if>
+      <if test="originalPrice != null">
+        ORIGINAL_PRICE,
+      </if>
+      <if test="oldPrice != null">
+        OLD_PRICE,
+      </if>
+      <if test="equity != null">
+        EQUITY,
+      </if>
+      <if test="repairOrganization != null">
+        REPAIR_ORGANIZATION,
+      </if>
+      <if test="repairTel != null">
+        REPAIR_TEL,
+      </if>
+      <if test="repairAddress != null">
+        REPAIR_ADDRESS,
+      </if>
+      <if test="repairBy != null">
+        REPAIR_BY,
+      </if>
+      <if test="manufacturer != null">
+        MANUFACTURER,
+      </if>
+      <if test="manufacturerAddress != null">
+        MANUFACTURER_ADDRESS,
       </if>
       <if test="createdBy != null">
         CREATED_BY,
@@ -205,6 +279,9 @@
       </if>
       <if test="specification != null">
         SPECIFICATION,
+      </if>
+      <if test="repairStandard != null">
+        REPAIR_STANDARD,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -226,6 +303,12 @@
       <if test="maintenanceCycle != null">
         #{maintenanceCycle,jdbcType=VARCHAR},
       </if>
+      <if test="material != null">
+        #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="placement != null">
+        #{placement,jdbcType=VARCHAR},
+      </if>
       <if test="weight != null">
         #{weight,jdbcType=DECIMAL},
       </if>
@@ -235,26 +318,68 @@
       <if test="modelPosition != null">
         #{modelPosition,jdbcType=VARCHAR},
       </if>
-      <if test="isactivity != null">
-        #{isactivity,jdbcType=VARCHAR},
+      <if test="installTime != null">
+        #{installTime,jdbcType=DATE},
       </if>
-      <if test="useDate != null">
-        #{useDate,jdbcType=DATE},
+      <if test="scrapDate != null">
+        #{scrapDate,jdbcType=DATE},
+      </if>
+      <if test="lifeUseful != null">
+        #{lifeUseful,jdbcType=INTEGER},
+      </if>
+      <if test="monthsUsed != null">
+        #{monthsUsed,jdbcType=INTEGER},
+      </if>
+      <if test="repairTimes != null">
+        #{repairTimes,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTimes != null">
+        #{maintainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="originalPrice != null">
+        #{originalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=INTEGER},
+      </if>
+      <if test="equity != null">
+        #{equity,jdbcType=INTEGER},
+      </if>
+      <if test="repairOrganization != null">
+        #{repairOrganization,jdbcType=VARCHAR},
+      </if>
+      <if test="repairTel != null">
+        #{repairTel,jdbcType=VARCHAR},
+      </if>
+      <if test="repairAddress != null">
+        #{repairAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repairBy != null">
+        #{repairBy,jdbcType=BIGINT},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerAddress != null">
+        #{manufacturerAddress,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null">
-        #{createdBy,jdbcType=VARCHAR},
+        #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        #{updatedBy,jdbcType=VARCHAR},
+        #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="specification != null">
         #{specification,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="repairStandard != null">
+        #{repairStandard,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -288,6 +413,12 @@
       <if test="record.maintenanceCycle != null">
         MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
       </if>
+      <if test="record.material != null">
+        MATERIAL = #{record.material,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placement != null">
+        PLACEMENT = #{record.placement,jdbcType=VARCHAR},
+      </if>
       <if test="record.weight != null">
         WEIGHT = #{record.weight,jdbcType=DECIMAL},
       </if>
@@ -297,26 +428,68 @@
       <if test="record.modelPosition != null">
         MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
       </if>
-      <if test="record.isactivity != null">
-        ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
+      <if test="record.installTime != null">
+        INSTALL_TIME = #{record.installTime,jdbcType=DATE},
       </if>
-      <if test="record.useDate != null">
-        USE_DATE = #{record.useDate,jdbcType=DATE},
+      <if test="record.scrapDate != null">
+        SCRAP_DATE = #{record.scrapDate,jdbcType=DATE},
+      </if>
+      <if test="record.lifeUseful != null">
+        LIFE_USEFUL = #{record.lifeUseful,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthsUsed != null">
+        MONTHS_USED = #{record.monthsUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.repairTimes != null">
+        REPAIR_TIMES = #{record.repairTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.maintainTimes != null">
+        MAINTAIN_TIMES = #{record.maintainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.originalPrice != null">
+        ORIGINAL_PRICE = #{record.originalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldPrice != null">
+        OLD_PRICE = #{record.oldPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.equity != null">
+        EQUITY = #{record.equity,jdbcType=INTEGER},
+      </if>
+      <if test="record.repairOrganization != null">
+        REPAIR_ORGANIZATION = #{record.repairOrganization,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repairTel != null">
+        REPAIR_TEL = #{record.repairTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repairAddress != null">
+        REPAIR_ADDRESS = #{record.repairAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repairBy != null">
+        REPAIR_BY = #{record.repairBy,jdbcType=BIGINT},
+      </if>
+      <if test="record.manufacturer != null">
+        MANUFACTURER = #{record.manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manufacturerAddress != null">
+        MANUFACTURER_ADDRESS = #{record.manufacturerAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.createdBy != null">
-        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       </if>
       <if test="record.createdTime != null">
         CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedBy != null">
-        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       </if>
       <if test="record.updatedTime != null">
         UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.specification != null">
         SPECIFICATION = #{record.specification,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.repairStandard != null">
+        REPAIR_STANDARD = #{record.repairStandard,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -332,16 +505,32 @@
       TYPE = #{record.type,jdbcType=VARCHAR},
       State = #{record.state,jdbcType=VARCHAR},
       MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
+      MATERIAL = #{record.material,jdbcType=VARCHAR},
+      PLACEMENT = #{record.placement,jdbcType=VARCHAR},
       WEIGHT = #{record.weight,jdbcType=DECIMAL},
       BIM_MODEL_CODE = #{record.bimModelCode,jdbcType=VARCHAR},
       MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
-      ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
-      USE_DATE = #{record.useDate,jdbcType=DATE},
-      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      INSTALL_TIME = #{record.installTime,jdbcType=DATE},
+      SCRAP_DATE = #{record.scrapDate,jdbcType=DATE},
+      LIFE_USEFUL = #{record.lifeUseful,jdbcType=INTEGER},
+      MONTHS_USED = #{record.monthsUsed,jdbcType=INTEGER},
+      REPAIR_TIMES = #{record.repairTimes,jdbcType=INTEGER},
+      MAINTAIN_TIMES = #{record.maintainTimes,jdbcType=INTEGER},
+      ORIGINAL_PRICE = #{record.originalPrice,jdbcType=INTEGER},
+      OLD_PRICE = #{record.oldPrice,jdbcType=INTEGER},
+      EQUITY = #{record.equity,jdbcType=INTEGER},
+      REPAIR_ORGANIZATION = #{record.repairOrganization,jdbcType=VARCHAR},
+      REPAIR_TEL = #{record.repairTel,jdbcType=VARCHAR},
+      REPAIR_ADDRESS = #{record.repairAddress,jdbcType=VARCHAR},
+      REPAIR_BY = #{record.repairBy,jdbcType=BIGINT},
+      MANUFACTURER = #{record.manufacturer,jdbcType=VARCHAR},
+      MANUFACTURER_ADDRESS = #{record.manufacturerAddress,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
-      SPECIFICATION = #{record.specification,jdbcType=LONGVARCHAR}
+      SPECIFICATION = #{record.specification,jdbcType=LONGVARCHAR},
+      REPAIR_STANDARD = #{record.repairStandard,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -355,14 +544,29 @@
       TYPE = #{record.type,jdbcType=VARCHAR},
       State = #{record.state,jdbcType=VARCHAR},
       MAINTENANCE_CYCLE = #{record.maintenanceCycle,jdbcType=VARCHAR},
+      MATERIAL = #{record.material,jdbcType=VARCHAR},
+      PLACEMENT = #{record.placement,jdbcType=VARCHAR},
       WEIGHT = #{record.weight,jdbcType=DECIMAL},
       BIM_MODEL_CODE = #{record.bimModelCode,jdbcType=VARCHAR},
       MODEL_POSITION = #{record.modelPosition,jdbcType=VARCHAR},
-      ISACTIVITY = #{record.isactivity,jdbcType=VARCHAR},
-      USE_DATE = #{record.useDate,jdbcType=DATE},
-      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      INSTALL_TIME = #{record.installTime,jdbcType=DATE},
+      SCRAP_DATE = #{record.scrapDate,jdbcType=DATE},
+      LIFE_USEFUL = #{record.lifeUseful,jdbcType=INTEGER},
+      MONTHS_USED = #{record.monthsUsed,jdbcType=INTEGER},
+      REPAIR_TIMES = #{record.repairTimes,jdbcType=INTEGER},
+      MAINTAIN_TIMES = #{record.maintainTimes,jdbcType=INTEGER},
+      ORIGINAL_PRICE = #{record.originalPrice,jdbcType=INTEGER},
+      OLD_PRICE = #{record.oldPrice,jdbcType=INTEGER},
+      EQUITY = #{record.equity,jdbcType=INTEGER},
+      REPAIR_ORGANIZATION = #{record.repairOrganization,jdbcType=VARCHAR},
+      REPAIR_TEL = #{record.repairTel,jdbcType=VARCHAR},
+      REPAIR_ADDRESS = #{record.repairAddress,jdbcType=VARCHAR},
+      REPAIR_BY = #{record.repairBy,jdbcType=BIGINT},
+      MANUFACTURER = #{record.manufacturer,jdbcType=VARCHAR},
+      MANUFACTURER_ADDRESS = #{record.manufacturerAddress,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -389,6 +593,12 @@
       <if test="maintenanceCycle != null">
         MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
       </if>
+      <if test="material != null">
+        MATERIAL = #{material,jdbcType=VARCHAR},
+      </if>
+      <if test="placement != null">
+        PLACEMENT = #{placement,jdbcType=VARCHAR},
+      </if>
       <if test="weight != null">
         WEIGHT = #{weight,jdbcType=DECIMAL},
       </if>
@@ -398,26 +608,68 @@
       <if test="modelPosition != null">
         MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
       </if>
-      <if test="isactivity != null">
-        ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
+      <if test="installTime != null">
+        INSTALL_TIME = #{installTime,jdbcType=DATE},
       </if>
-      <if test="useDate != null">
-        USE_DATE = #{useDate,jdbcType=DATE},
+      <if test="scrapDate != null">
+        SCRAP_DATE = #{scrapDate,jdbcType=DATE},
+      </if>
+      <if test="lifeUseful != null">
+        LIFE_USEFUL = #{lifeUseful,jdbcType=INTEGER},
+      </if>
+      <if test="monthsUsed != null">
+        MONTHS_USED = #{monthsUsed,jdbcType=INTEGER},
+      </if>
+      <if test="repairTimes != null">
+        REPAIR_TIMES = #{repairTimes,jdbcType=INTEGER},
+      </if>
+      <if test="maintainTimes != null">
+        MAINTAIN_TIMES = #{maintainTimes,jdbcType=INTEGER},
+      </if>
+      <if test="originalPrice != null">
+        ORIGINAL_PRICE = #{originalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oldPrice != null">
+        OLD_PRICE = #{oldPrice,jdbcType=INTEGER},
+      </if>
+      <if test="equity != null">
+        EQUITY = #{equity,jdbcType=INTEGER},
+      </if>
+      <if test="repairOrganization != null">
+        REPAIR_ORGANIZATION = #{repairOrganization,jdbcType=VARCHAR},
+      </if>
+      <if test="repairTel != null">
+        REPAIR_TEL = #{repairTel,jdbcType=VARCHAR},
+      </if>
+      <if test="repairAddress != null">
+        REPAIR_ADDRESS = #{repairAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="repairBy != null">
+        REPAIR_BY = #{repairBy,jdbcType=BIGINT},
+      </if>
+      <if test="manufacturer != null">
+        MANUFACTURER = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturerAddress != null">
+        MANUFACTURER_ADDRESS = #{manufacturerAddress,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null">
-        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="specification != null">
         SPECIFICATION = #{specification,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="repairStandard != null">
+        REPAIR_STANDARD = #{repairStandard,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where ID = #{id,jdbcType=INTEGER}
@@ -430,16 +682,32 @@
       TYPE = #{type,jdbcType=VARCHAR},
       State = #{state,jdbcType=VARCHAR},
       MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
+      MATERIAL = #{material,jdbcType=VARCHAR},
+      PLACEMENT = #{placement,jdbcType=VARCHAR},
       WEIGHT = #{weight,jdbcType=DECIMAL},
       BIM_MODEL_CODE = #{bimModelCode,jdbcType=VARCHAR},
       MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
-      ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
-      USE_DATE = #{useDate,jdbcType=DATE},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      INSTALL_TIME = #{installTime,jdbcType=DATE},
+      SCRAP_DATE = #{scrapDate,jdbcType=DATE},
+      LIFE_USEFUL = #{lifeUseful,jdbcType=INTEGER},
+      MONTHS_USED = #{monthsUsed,jdbcType=INTEGER},
+      REPAIR_TIMES = #{repairTimes,jdbcType=INTEGER},
+      MAINTAIN_TIMES = #{maintainTimes,jdbcType=INTEGER},
+      ORIGINAL_PRICE = #{originalPrice,jdbcType=INTEGER},
+      OLD_PRICE = #{oldPrice,jdbcType=INTEGER},
+      EQUITY = #{equity,jdbcType=INTEGER},
+      REPAIR_ORGANIZATION = #{repairOrganization,jdbcType=VARCHAR},
+      REPAIR_TEL = #{repairTel,jdbcType=VARCHAR},
+      REPAIR_ADDRESS = #{repairAddress,jdbcType=VARCHAR},
+      REPAIR_BY = #{repairBy,jdbcType=BIGINT},
+      MANUFACTURER = #{manufacturer,jdbcType=VARCHAR},
+      MANUFACTURER_ADDRESS = #{manufacturerAddress,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
-      SPECIFICATION = #{specification,jdbcType=LONGVARCHAR}
+      SPECIFICATION = #{specification,jdbcType=LONGVARCHAR},
+      REPAIR_STANDARD = #{repairStandard,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cormen.bim.model.EmsEquipment">
@@ -450,14 +718,29 @@
       TYPE = #{type,jdbcType=VARCHAR},
       State = #{state,jdbcType=VARCHAR},
       MAINTENANCE_CYCLE = #{maintenanceCycle,jdbcType=VARCHAR},
+      MATERIAL = #{material,jdbcType=VARCHAR},
+      PLACEMENT = #{placement,jdbcType=VARCHAR},
       WEIGHT = #{weight,jdbcType=DECIMAL},
       BIM_MODEL_CODE = #{bimModelCode,jdbcType=VARCHAR},
       MODEL_POSITION = #{modelPosition,jdbcType=VARCHAR},
-      ISACTIVITY = #{isactivity,jdbcType=VARCHAR},
-      USE_DATE = #{useDate,jdbcType=DATE},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      INSTALL_TIME = #{installTime,jdbcType=DATE},
+      SCRAP_DATE = #{scrapDate,jdbcType=DATE},
+      LIFE_USEFUL = #{lifeUseful,jdbcType=INTEGER},
+      MONTHS_USED = #{monthsUsed,jdbcType=INTEGER},
+      REPAIR_TIMES = #{repairTimes,jdbcType=INTEGER},
+      MAINTAIN_TIMES = #{maintainTimes,jdbcType=INTEGER},
+      ORIGINAL_PRICE = #{originalPrice,jdbcType=INTEGER},
+      OLD_PRICE = #{oldPrice,jdbcType=INTEGER},
+      EQUITY = #{equity,jdbcType=INTEGER},
+      REPAIR_ORGANIZATION = #{repairOrganization,jdbcType=VARCHAR},
+      REPAIR_TEL = #{repairTel,jdbcType=VARCHAR},
+      REPAIR_ADDRESS = #{repairAddress,jdbcType=VARCHAR},
+      REPAIR_BY = #{repairBy,jdbcType=BIGINT},
+      MANUFACTURER = #{manufacturer,jdbcType=VARCHAR},
+      MANUFACTURER_ADDRESS = #{manufacturerAddress,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>

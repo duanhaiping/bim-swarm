@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Controller
-@Api(tags = "EmsEqumentController", description = "设备管理")
+@Api(tags = "设备管理", description = "设备管理")
 @RequestMapping("/equment")
 public class EmsEqumentController {
 
@@ -30,11 +30,7 @@ public class EmsEqumentController {
     @ResponseBody
     public CommonResult create(@RequestBody EqumentParam equmentParam) {
         int count = emsEqumentService.addEqument(equmentParam);
-        if (count > 0) {
-            return CommonResult.success(count);
-        } else {
-            return CommonResult.failed();
-        }
+        return CommonResult.success(count);
     }
 
 

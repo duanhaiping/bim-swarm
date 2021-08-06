@@ -393,62 +393,52 @@ public class EmsEquMaintenanceTaskPlanExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByEqualTo(String value) {
+        public Criteria andCreatedByEqualTo(Long value) {
             addCriterion("CREATED_BY =", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByNotEqualTo(String value) {
+        public Criteria andCreatedByNotEqualTo(Long value) {
             addCriterion("CREATED_BY <>", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByGreaterThan(String value) {
+        public Criteria andCreatedByGreaterThan(Long value) {
             addCriterion("CREATED_BY >", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByGreaterThanOrEqualTo(String value) {
+        public Criteria andCreatedByGreaterThanOrEqualTo(Long value) {
             addCriterion("CREATED_BY >=", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByLessThan(String value) {
+        public Criteria andCreatedByLessThan(Long value) {
             addCriterion("CREATED_BY <", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByLessThanOrEqualTo(String value) {
+        public Criteria andCreatedByLessThanOrEqualTo(Long value) {
             addCriterion("CREATED_BY <=", value, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByLike(String value) {
-            addCriterion("CREATED_BY like", value, "createdBy");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedByNotLike(String value) {
-            addCriterion("CREATED_BY not like", value, "createdBy");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreatedByIn(List<String> values) {
+        public Criteria andCreatedByIn(List<Long> values) {
             addCriterion("CREATED_BY in", values, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByNotIn(List<String> values) {
+        public Criteria andCreatedByNotIn(List<Long> values) {
             addCriterion("CREATED_BY not in", values, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByBetween(String value1, String value2) {
+        public Criteria andCreatedByBetween(Long value1, Long value2) {
             addCriterion("CREATED_BY between", value1, value2, "createdBy");
             return (Criteria) this;
         }
 
-        public Criteria andCreatedByNotBetween(String value1, String value2) {
+        public Criteria andCreatedByNotBetween(Long value1, Long value2) {
             addCriterion("CREATED_BY not between", value1, value2, "createdBy");
             return (Criteria) this;
         }
@@ -523,62 +513,52 @@ public class EmsEquMaintenanceTaskPlanExample {
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByEqualTo(String value) {
+        public Criteria andUpdatedByEqualTo(Long value) {
             addCriterion("UPDATED_BY =", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByNotEqualTo(String value) {
+        public Criteria andUpdatedByNotEqualTo(Long value) {
             addCriterion("UPDATED_BY <>", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByGreaterThan(String value) {
+        public Criteria andUpdatedByGreaterThan(Long value) {
             addCriterion("UPDATED_BY >", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByGreaterThanOrEqualTo(String value) {
+        public Criteria andUpdatedByGreaterThanOrEqualTo(Long value) {
             addCriterion("UPDATED_BY >=", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByLessThan(String value) {
+        public Criteria andUpdatedByLessThan(Long value) {
             addCriterion("UPDATED_BY <", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByLessThanOrEqualTo(String value) {
+        public Criteria andUpdatedByLessThanOrEqualTo(Long value) {
             addCriterion("UPDATED_BY <=", value, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByLike(String value) {
-            addCriterion("UPDATED_BY like", value, "updatedBy");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdatedByNotLike(String value) {
-            addCriterion("UPDATED_BY not like", value, "updatedBy");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdatedByIn(List<String> values) {
+        public Criteria andUpdatedByIn(List<Long> values) {
             addCriterion("UPDATED_BY in", values, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByNotIn(List<String> values) {
+        public Criteria andUpdatedByNotIn(List<Long> values) {
             addCriterion("UPDATED_BY not in", values, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByBetween(String value1, String value2) {
+        public Criteria andUpdatedByBetween(Long value1, Long value2) {
             addCriterion("UPDATED_BY between", value1, value2, "updatedBy");
             return (Criteria) this;
         }
 
-        public Criteria andUpdatedByNotBetween(String value1, String value2) {
+        public Criteria andUpdatedByNotBetween(Long value1, Long value2) {
             addCriterion("UPDATED_BY not between", value1, value2, "updatedBy");
             return (Criteria) this;
         }
@@ -853,52 +833,52 @@ public class EmsEquMaintenanceTaskPlanExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentEqualTo(Integer value) {
+        public Criteria andAgentEqualTo(Long value) {
             addCriterion("AGENT =", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotEqualTo(Integer value) {
+        public Criteria andAgentNotEqualTo(Long value) {
             addCriterion("AGENT <>", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentGreaterThan(Integer value) {
+        public Criteria andAgentGreaterThan(Long value) {
             addCriterion("AGENT >", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAgentGreaterThanOrEqualTo(Long value) {
             addCriterion("AGENT >=", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentLessThan(Integer value) {
+        public Criteria andAgentLessThan(Long value) {
             addCriterion("AGENT <", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentLessThanOrEqualTo(Integer value) {
+        public Criteria andAgentLessThanOrEqualTo(Long value) {
             addCriterion("AGENT <=", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentIn(List<Integer> values) {
+        public Criteria andAgentIn(List<Long> values) {
             addCriterion("AGENT in", values, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotIn(List<Integer> values) {
+        public Criteria andAgentNotIn(List<Long> values) {
             addCriterion("AGENT not in", values, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentBetween(Integer value1, Integer value2) {
+        public Criteria andAgentBetween(Long value1, Long value2) {
             addCriterion("AGENT between", value1, value2, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotBetween(Integer value1, Integer value2) {
+        public Criteria andAgentNotBetween(Long value1, Long value2) {
             addCriterion("AGENT not between", value1, value2, "agent");
             return (Criteria) this;
         }

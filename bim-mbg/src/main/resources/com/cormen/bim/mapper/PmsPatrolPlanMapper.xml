@@ -10,7 +10,7 @@
     <result column="PATH_ID" jdbcType="INTEGER" property="pathId" />
     <result column="FREQUENCY_TYPE" jdbcType="VARCHAR" property="frequencyType" />
     <result column="BIM_PATH" jdbcType="VARCHAR" property="bimPath" />
-    <result column="AGENT" jdbcType="INTEGER" property="agent" />
+    <result column="AGENT" jdbcType="BIGINT" property="agent" />
     <result column="FREQUENCY_NUMBER" jdbcType="INTEGER" property="frequencyNumber" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -115,7 +115,7 @@
       )
     values (#{regionId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{staetDate,jdbcType=DATE}, 
       #{endDate,jdbcType=DATE}, #{pathId,jdbcType=INTEGER}, #{frequencyType,jdbcType=VARCHAR}, 
-      #{bimPath,jdbcType=VARCHAR}, #{agent,jdbcType=INTEGER}, #{frequencyNumber,jdbcType=INTEGER}
+      #{bimPath,jdbcType=VARCHAR}, #{agent,jdbcType=BIGINT}, #{frequencyNumber,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cormen.bim.model.PmsPatrolPlan">
@@ -175,7 +175,7 @@
         #{bimPath,jdbcType=VARCHAR},
       </if>
       <if test="agent != null">
-        #{agent,jdbcType=INTEGER},
+        #{agent,jdbcType=BIGINT},
       </if>
       <if test="frequencyNumber != null">
         #{frequencyNumber,jdbcType=INTEGER},
@@ -216,7 +216,7 @@
         BIM_PATH = #{record.bimPath,jdbcType=VARCHAR},
       </if>
       <if test="record.agent != null">
-        AGENT = #{record.agent,jdbcType=INTEGER},
+        AGENT = #{record.agent,jdbcType=BIGINT},
       </if>
       <if test="record.frequencyNumber != null">
         FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER},
@@ -236,7 +236,7 @@
       PATH_ID = #{record.pathId,jdbcType=INTEGER},
       FREQUENCY_TYPE = #{record.frequencyType,jdbcType=VARCHAR},
       BIM_PATH = #{record.bimPath,jdbcType=VARCHAR},
-      AGENT = #{record.agent,jdbcType=INTEGER},
+      AGENT = #{record.agent,jdbcType=BIGINT},
       FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -267,7 +267,7 @@
         BIM_PATH = #{bimPath,jdbcType=VARCHAR},
       </if>
       <if test="agent != null">
-        AGENT = #{agent,jdbcType=INTEGER},
+        AGENT = #{agent,jdbcType=BIGINT},
       </if>
       <if test="frequencyNumber != null">
         FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER},
@@ -284,7 +284,7 @@
       PATH_ID = #{pathId,jdbcType=INTEGER},
       FREQUENCY_TYPE = #{frequencyType,jdbcType=VARCHAR},
       BIM_PATH = #{bimPath,jdbcType=VARCHAR},
-      AGENT = #{agent,jdbcType=INTEGER},
+      AGENT = #{agent,jdbcType=BIGINT},
       FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER}
     where ID = #{id,jdbcType=INTEGER}
   </update>

@@ -1,6 +1,7 @@
 package com.cormen.bim.service.impl;
 
 
+import com.cormen.bim.common.exception.Asserts;
 import com.cormen.bim.dto.EqumentTypeParam;
 import com.cormen.bim.mapper.EmsTypeMapper;
 import com.cormen.bim.mapper.UmsMenuMapper;
@@ -13,6 +14,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -37,9 +39,17 @@ public class EmsEqumentTypeServiceImpl implements EmsEqumentTypeService {
     }
 
     @Override
-    public int addEquType(EqumentTypeParam equmentTypeParam) {
+    public int addEquType(EqumentTypeParam equmentTypeParam)  {
         EmsType  type = new EmsType();
         BeanUtils.copyProperties(equmentTypeParam, type);
+        //查询是否有相同名称的类型
+        EmsTypeExample example = new EmsTypeExample();
+        example.createCriteria().andNameEqualTo(type.getName());
+        List<EmsType> emsTypeList= emsTypeMapper.selectByExample(example);
+        if(emsTypeList.size()>0){
+            Asserts.fail(String.format("已存在设备类型为:【%s】的记录",equmentTypeParam.getName()) );
+        }
+
         return  emsTypeMapper.insert(type);
     }
 
@@ -48,6 +58,13 @@ public class EmsEqumentTypeServiceImpl implements EmsEqumentTypeService {
         EmsType  type = new EmsType();
         BeanUtils.copyProperties(emsType, type);
         type.setId(id);
+        //查询是否有相同名称的类型
+        EmsTypeExample example = new EmsTypeExample();
+        example.createCriteria().andNameEqualTo(type.getName());
+        example.createCriteria().andIdNotEqualTo(id);
+        List<EmsType> emsTypeList= emsTypeMapper.selectByExample(example);
+        if(emsTypeList.size()>0)
+            Asserts.fail(String.format("已存在设备类型为:【%s】的记录",emsType.getName()) );
         return emsTypeMapper.updateByPrimaryKey(type);
 
     }

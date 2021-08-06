@@ -652,52 +652,52 @@ public class PmsPatrolPlanExample {
             return (Criteria) this;
         }
 
-        public Criteria andAgentEqualTo(Integer value) {
+        public Criteria andAgentEqualTo(Long value) {
             addCriterion("AGENT =", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotEqualTo(Integer value) {
+        public Criteria andAgentNotEqualTo(Long value) {
             addCriterion("AGENT <>", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentGreaterThan(Integer value) {
+        public Criteria andAgentGreaterThan(Long value) {
             addCriterion("AGENT >", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAgentGreaterThanOrEqualTo(Long value) {
             addCriterion("AGENT >=", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentLessThan(Integer value) {
+        public Criteria andAgentLessThan(Long value) {
             addCriterion("AGENT <", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentLessThanOrEqualTo(Integer value) {
+        public Criteria andAgentLessThanOrEqualTo(Long value) {
             addCriterion("AGENT <=", value, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentIn(List<Integer> values) {
+        public Criteria andAgentIn(List<Long> values) {
             addCriterion("AGENT in", values, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotIn(List<Integer> values) {
+        public Criteria andAgentNotIn(List<Long> values) {
             addCriterion("AGENT not in", values, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentBetween(Integer value1, Integer value2) {
+        public Criteria andAgentBetween(Long value1, Long value2) {
             addCriterion("AGENT between", value1, value2, "agent");
             return (Criteria) this;
         }
 
-        public Criteria andAgentNotBetween(Integer value1, Integer value2) {
+        public Criteria andAgentNotBetween(Long value1, Long value2) {
             addCriterion("AGENT not between", value1, value2, "agent");
             return (Criteria) this;
         }

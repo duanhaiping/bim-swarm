@@ -22,7 +22,7 @@ import java.util.List;
  **/
 
 @Controller
-@Api(tags = "EmsEquMaintenanceTaskCheckIssueController", description = "设备保养维护问题")
+@Api(tags = "设备保养维护问题管理", description = "设备保养维护问题")
 @RequestMapping("/equ-task-issue")
 public class EmsEquMaintenanceTaskCheckIssueController {
     @Autowired

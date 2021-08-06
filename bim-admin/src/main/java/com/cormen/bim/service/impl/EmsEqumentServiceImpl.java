@@ -1,19 +1,20 @@
 package com.cormen.bim.service.impl;
 
+import com.cormen.bim.common.exception.Asserts;
 import com.cormen.bim.dto.EqumentParam;
 import com.cormen.bim.mapper.EmsEquipmentMapper;
 import com.cormen.bim.mapper.EmsTypeMapper;
-import com.cormen.bim.model.EmsEquipment;
-import com.cormen.bim.model.EmsEquipmentExample;
-import com.cormen.bim.model.EmsType;
-import com.cormen.bim.model.EmsTypeExample;
+import com.cormen.bim.model.*;
 import com.cormen.bim.service.EmsEqumentService;
+import com.cormen.bim.service.UmsAdminService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +28,8 @@ public class EmsEqumentServiceImpl implements EmsEqumentService {
     @Autowired
     private EmsEquipmentMapper emsEquipmentMapper;
 
+    @Autowired
+    private UmsAdminService adminService;
 
     /**
      * @param equTypeId
@@ -65,6 +68,16 @@ public class EmsEqumentServiceImpl implements EmsEqumentService {
     public int addEqument(EqumentParam equmentParam) {
         EmsEquipment equipment = new EmsEquipment();
         BeanUtils.copyProperties(equmentParam, equipment);
+        EmsEquipmentExample example = new EmsEquipmentExample();
+        example.createCriteria().andNameEqualTo(equipment.getName());
+        List<EmsEquipment> emsTypeList= emsEquipmentMapper.selectByExample(example);
+        if(emsTypeList.size()>0)
+            Asserts.fail(String.format("已存在设备为:【%s】的记录",equipment.getName()) );
+
+        equipment.setCreatedTime(new Date());
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equipment.setCreatedBy(currentAdmin.getId());
+
         return  emsEquipmentMapper.insert(equipment);
     }
 

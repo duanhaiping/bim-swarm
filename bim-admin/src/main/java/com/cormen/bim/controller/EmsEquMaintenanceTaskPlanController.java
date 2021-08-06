@@ -23,7 +23,7 @@ import java.util.List;
 
 
 @Controller
-@Api(tags = "EmsEquMaintenanceTaskPlanController", description = "设备保养维护计划")
+@Api(tags = "设备保养维护计划管理", description = "设备保养维护计划")
 @RequestMapping("/equ-task-plan")
 public class EmsEquMaintenanceTaskPlanController {
 

@@ -6,14 +6,14 @@
     <result column="REGION_ID" jdbcType="INTEGER" property="regionId" />
     <result column="EQUMENT_ID" jdbcType="INTEGER" property="equmentId" />
     <result column="TASK_NAME" jdbcType="VARCHAR" property="taskName" />
-    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_BY" jdbcType="BIGINT" property="createdBy" />
     <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_BY" jdbcType="BIGINT" property="updatedBy" />
     <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
     <result column="TYPE" jdbcType="VARCHAR" property="type" />
     <result column="FREQUENCY_TYPE" jdbcType="VARCHAR" property="frequencyType" />
     <result column="FREQUENCY_NUMBER" jdbcType="INTEGER" property="frequencyNumber" />
-    <result column="AGENT" jdbcType="INTEGER" property="agent" />
+    <result column="AGENT" jdbcType="BIGINT" property="agent" />
     <result column="FUNDS" jdbcType="DECIMAL" property="funds" />
     <result column="INSPECTION" jdbcType="INTEGER" property="inspection" />
     <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
@@ -125,9 +125,9 @@
       INSPECTION, ADDRESS, MAINPOINT, 
       TASK_STARTDATE, TASK_ENDDATE)
     values (#{regionId,jdbcType=INTEGER}, #{equmentId,jdbcType=INTEGER}, #{taskName,jdbcType=VARCHAR}, 
-      #{createdBy,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=BIGINT}, #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=BIGINT}, 
       #{updatedTime,jdbcType=TIMESTAMP}, #{type,jdbcType=VARCHAR}, #{frequencyType,jdbcType=VARCHAR}, 
-      #{frequencyNumber,jdbcType=INTEGER}, #{agent,jdbcType=INTEGER}, #{funds,jdbcType=DECIMAL}, 
+      #{frequencyNumber,jdbcType=INTEGER}, #{agent,jdbcType=BIGINT}, #{funds,jdbcType=DECIMAL}, 
       #{inspection,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{mainpoint,jdbcType=VARCHAR}, 
       #{taskStartdate,jdbcType=DATE}, #{taskEnddate,jdbcType=VARCHAR})
   </insert>
@@ -200,13 +200,13 @@
         #{taskName,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null">
-        #{createdBy,jdbcType=VARCHAR},
+        #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        #{updatedBy,jdbcType=VARCHAR},
+        #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         #{updatedTime,jdbcType=TIMESTAMP},
@@ -221,7 +221,7 @@
         #{frequencyNumber,jdbcType=INTEGER},
       </if>
       <if test="agent != null">
-        #{agent,jdbcType=INTEGER},
+        #{agent,jdbcType=BIGINT},
       </if>
       <if test="funds != null">
         #{funds,jdbcType=DECIMAL},
@@ -265,13 +265,13 @@
         TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
       </if>
       <if test="record.createdBy != null">
-        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       </if>
       <if test="record.createdTime != null">
         CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedBy != null">
-        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       </if>
       <if test="record.updatedTime != null">
         UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
@@ -286,7 +286,7 @@
         FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER},
       </if>
       <if test="record.agent != null">
-        AGENT = #{record.agent,jdbcType=INTEGER},
+        AGENT = #{record.agent,jdbcType=BIGINT},
       </if>
       <if test="record.funds != null">
         FUNDS = #{record.funds,jdbcType=DECIMAL},
@@ -317,14 +317,14 @@
       REGION_ID = #{record.regionId,jdbcType=INTEGER},
       EQUMENT_ID = #{record.equmentId,jdbcType=INTEGER},
       TASK_NAME = #{record.taskName,jdbcType=VARCHAR},
-      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
       TYPE = #{record.type,jdbcType=VARCHAR},
       FREQUENCY_TYPE = #{record.frequencyType,jdbcType=VARCHAR},
       FREQUENCY_NUMBER = #{record.frequencyNumber,jdbcType=INTEGER},
-      AGENT = #{record.agent,jdbcType=INTEGER},
+      AGENT = #{record.agent,jdbcType=BIGINT},
       FUNDS = #{record.funds,jdbcType=DECIMAL},
       INSPECTION = #{record.inspection,jdbcType=INTEGER},
       ADDRESS = #{record.address,jdbcType=VARCHAR},
@@ -348,13 +348,13 @@
         TASK_NAME = #{taskName,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null">
-        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
@@ -369,7 +369,7 @@
         FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER},
       </if>
       <if test="agent != null">
-        AGENT = #{agent,jdbcType=INTEGER},
+        AGENT = #{agent,jdbcType=BIGINT},
       </if>
       <if test="funds != null">
         FUNDS = #{funds,jdbcType=DECIMAL},
@@ -397,14 +397,14 @@
     set REGION_ID = #{regionId,jdbcType=INTEGER},
       EQUMENT_ID = #{equmentId,jdbcType=INTEGER},
       TASK_NAME = #{taskName,jdbcType=VARCHAR},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
       TYPE = #{type,jdbcType=VARCHAR},
       FREQUENCY_TYPE = #{frequencyType,jdbcType=VARCHAR},
       FREQUENCY_NUMBER = #{frequencyNumber,jdbcType=INTEGER},
-      AGENT = #{agent,jdbcType=INTEGER},
+      AGENT = #{agent,jdbcType=BIGINT},
       FUNDS = #{funds,jdbcType=DECIMAL},
       INSPECTION = #{inspection,jdbcType=INTEGER},
       ADDRESS = #{address,jdbcType=VARCHAR},

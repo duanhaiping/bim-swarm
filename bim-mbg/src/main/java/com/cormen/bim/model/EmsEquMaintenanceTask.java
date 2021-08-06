@@ -22,13 +22,13 @@ public class EmsEquMaintenanceTask implements Serializable {
     private Integer reviewer;
 
     @ApiModelProperty(value = "创建人")
-    private String createdBy;
+    private Long createdBy;
 
     @ApiModelProperty(value = "创建时间")
     private Date createdTime;
 
     @ApiModelProperty(value = "更新人")
-    private String updatedBy;
+    private Long updatedBy;
 
     @ApiModelProperty(value = "更新时间")
     private Date updatedTime;
@@ -83,11 +83,11 @@ public class EmsEquMaintenanceTask implements Serializable {
         this.reviewer = reviewer;
     }
 
-    public String getCreatedBy() {
+    public Long getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Long createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -99,11 +99,11 @@ public class EmsEquMaintenanceTask implements Serializable {
         this.createdTime = createdTime;
     }
 
-    public String getUpdatedBy() {
+    public Long getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
+    public void setUpdatedBy(Long updatedBy) {
         this.updatedBy = updatedBy;
     }
 

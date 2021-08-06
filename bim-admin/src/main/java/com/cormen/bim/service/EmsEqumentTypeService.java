@@ -20,7 +20,7 @@ public interface EmsEqumentTypeService {
     /*
     * 添加设备类型
     * */
-    int addEquType(EqumentTypeParam equmentTypeParam);
+    int addEquType(EqumentTypeParam equmentTypeParam) ;
 
     /*
     * 编辑设备类型

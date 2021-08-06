@@ -8,9 +8,9 @@
     <result column="AGENT" jdbcType="INTEGER" property="agent" />
     <result column="EXECUTOR" jdbcType="INTEGER" property="executor" />
     <result column="REVIEWER" jdbcType="INTEGER" property="reviewer" />
-    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="CREATED_BY" jdbcType="BIGINT" property="createdBy" />
     <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
-    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="UPDATED_BY" jdbcType="BIGINT" property="updatedBy" />
     <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -114,8 +114,8 @@
       CREATED_TIME, UPDATED_BY, UPDATED_TIME
       )
     values (#{name,jdbcType=VARCHAR}, #{linkPlan,jdbcType=INTEGER}, #{agent,jdbcType=INTEGER}, 
-      #{executor,jdbcType=INTEGER}, #{reviewer,jdbcType=INTEGER}, #{createdBy,jdbcType=VARCHAR}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, #{updatedTime,jdbcType=TIMESTAMP}
+      #{executor,jdbcType=INTEGER}, #{reviewer,jdbcType=INTEGER}, #{createdBy,jdbcType=BIGINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=BIGINT}, #{updatedTime,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.cormen.bim.model.EmsEquMaintenanceTask">
@@ -169,13 +169,13 @@
         #{reviewer,jdbcType=INTEGER},
       </if>
       <if test="createdBy != null">
-        #{createdBy,jdbcType=VARCHAR},
+        #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        #{updatedBy,jdbcType=VARCHAR},
+        #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         #{updatedTime,jdbcType=TIMESTAMP},
@@ -210,13 +210,13 @@
         REVIEWER = #{record.reviewer,jdbcType=INTEGER},
       </if>
       <if test="record.createdBy != null">
-        CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       </if>
       <if test="record.createdTime != null">
         CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.updatedBy != null">
-        UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       </if>
       <if test="record.updatedTime != null">
         UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP},
@@ -234,9 +234,9 @@
       AGENT = #{record.agent,jdbcType=INTEGER},
       EXECUTOR = #{record.executor,jdbcType=INTEGER},
       REVIEWER = #{record.reviewer,jdbcType=INTEGER},
-      CREATED_BY = #{record.createdBy,jdbcType=VARCHAR},
+      CREATED_BY = #{record.createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{record.createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{record.updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{record.updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{record.updatedTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -261,13 +261,13 @@
         REVIEWER = #{reviewer,jdbcType=INTEGER},
       </if>
       <if test="createdBy != null">
-        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
       </if>
       <if test="createdTime != null">
         CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updatedBy != null">
-        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+        UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       </if>
       <if test="updatedTime != null">
         UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
@@ -282,9 +282,9 @@
       AGENT = #{agent,jdbcType=INTEGER},
       EXECUTOR = #{executor,jdbcType=INTEGER},
       REVIEWER = #{reviewer,jdbcType=INTEGER},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=BIGINT},
       CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
       UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=INTEGER}
   </update>
