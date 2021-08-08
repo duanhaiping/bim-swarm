@@ -26,6 +26,12 @@ spring:
             - Path=/bim-search/**
           filters:
             - StripPrefix=1
+        - id: bim-workflow
+          uri: lb://bim-workflow
+          predicates:
+            - Path=/bim-workflow/**
+          filters:
+            - StripPrefix=1
   security:
     oauth2:
       resourceserver:
@@ -53,12 +59,6 @@ secure:
       - "/mall-auth/oauth/token"
       - "/bim-auth/rsa/publicKey"
       - "/bim-search/**"
-      - "/bim-portal/sso/login"
-      - "/bim-portal/sso/register"
-      - "/bim-portal/sso/getAuthCode"
-      - "/bim-portal/home/**"
-      - "/bim-portal/product/**"
-      - "/bim-portal/brand/**"
       - "/bim-admin/admin/login"
       - "/bim-admin/admin/register"
       - "/bim-admin/minio/upload"
