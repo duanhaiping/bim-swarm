@@ -1,9 +1,18 @@
 package com.cormen.bim.service.impl;
 
 import com.cormen.bim.dto.EquMaintenanceTaskPlanParam;
+import com.cormen.bim.mapper.EmsEquMaintenanceTaskMapper;
+import com.cormen.bim.mapper.EmsEquMaintenanceTaskPlanMapper;
+import com.cormen.bim.model.EmsEquMaintenanceTask;
+import com.cormen.bim.model.EmsEquMaintenanceTaskExample;
 import com.cormen.bim.model.EmsEquMaintenanceTaskPlan;
+import com.cormen.bim.model.EmsEquMaintenanceTaskPlanExample;
 import com.cormen.bim.service.EmsEquMaintenanceTaskPlanService;
+import com.github.pagehelper.PageHelper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -14,6 +23,9 @@ import java.util.List;
  **/
 @Service
 public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTaskPlanService {
+
+    @Autowired
+    private EmsEquMaintenanceTaskPlanMapper emsEquMaintenanceTaskPlanMapper ;
     /**
      * @param param
      * @Author: cormen
@@ -22,7 +34,9 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      */
     @Override
     public int addPlan(EquMaintenanceTaskPlanParam param) {
-        return 0;
+        EmsEquMaintenanceTaskPlan equMaintenanceTask = new EmsEquMaintenanceTaskPlan();
+        BeanUtils.copyProperties(param, equMaintenanceTask);
+        return  emsEquMaintenanceTaskPlanMapper.insert(equMaintenanceTask);
     }
 
     /**
@@ -33,8 +47,11 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      * @DateTime: 2021/8/3 15:15
      */
     @Override
-    public int update(int id, EquMaintenanceTaskPlanParam param) {
-        return 0;
+    public int update(long id, EquMaintenanceTaskPlanParam param) {
+        EmsEquMaintenanceTaskPlan equipment = new EmsEquMaintenanceTaskPlan();
+        BeanUtils.copyProperties(param, equipment);
+        equipment.setId(id);
+        return  emsEquMaintenanceTaskPlanMapper.updateByPrimaryKey(equipment);
     }
 
     /**
@@ -44,8 +61,8 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      * @DateTime: 2021/8/3 15:15
      */
     @Override
-    public int delete(int id) {
-        return 0;
+    public int delete(long id) {
+        return emsEquMaintenanceTaskPlanMapper.deleteByPrimaryKey(id);
     }
 
     /**
@@ -55,7 +72,7 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      * @DateTime: 2021/8/3 15:19
      */
     @Override
-    public int copy(int id) {
+    public int copy(long id) {
         return 0;
     }
 
@@ -66,8 +83,9 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      * @DateTime: 2021/8/3 15:20
      */
     @Override
-    public int invoke(int id) {
-        return 0;
+    public int invoke(long id) {
+       // EmsEquMaintenanceTaskPlan target =emsEquMaintenanceTaskPlanMapper.selectByPrimaryKey(id);
+        return 1;
     }
 
     /**
@@ -80,6 +98,11 @@ public class EmsEquMaintenanceTaskPlanServiceImpl implements EmsEquMaintenanceTa
      */
     @Override
     public List<EmsEquMaintenanceTaskPlan> list(String keyword, Integer pageSize, Integer pageNum) {
-        return null;
+        PageHelper.startPage(pageNum, pageSize);
+        EmsEquMaintenanceTaskPlanExample example = new EmsEquMaintenanceTaskPlanExample();
+        if (!StringUtils.isEmpty(keyword)) {
+            example.createCriteria().andTaskNameEqualTo("%" + keyword + "%");
+        }
+        return emsEquMaintenanceTaskPlanMapper.selectByExample(example);
     }
 }

@@ -23,28 +23,28 @@ public interface EmsEquMaintenanceTaskPlanService {
      * @Description: 修改设备保养维护计划
      * @DateTime: 2021/8/3 15:15
      */
-    int update(int id, EquMaintenanceTaskPlanParam param);
+    int update(long id, EquMaintenanceTaskPlanParam param);
 
     /**
      * @Author: cormen
      * @Description: 删除设备保养计划
      * @DateTime: 2021/8/3 15:15
      */
-    int delete(int id);
+    int delete(long id);
 
     /**
      * @Author: cormen
      * @Description: 复制计划
      * @DateTime: 2021/8/3 15:19
      */
-    int copy(int id);
+    int copy(long id);
 
     /**
      * @Author: cormen
      * @Description: 启用计划
      * @DateTime: 2021/8/3 15:20
      */
-    int invoke(int id);
+    int invoke(long id);
     
     /**
     * @Author: cormen

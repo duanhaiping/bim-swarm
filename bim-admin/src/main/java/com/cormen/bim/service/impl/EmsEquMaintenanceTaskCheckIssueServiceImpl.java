@@ -1,9 +1,17 @@
 package com.cormen.bim.service.impl;
 
 import com.cormen.bim.dto.EquMaintenanceTaskIssueParam;
+import com.cormen.bim.mapper.EmsEquMaintenanceTaskCheckIssueMapper;
+import com.cormen.bim.model.EmsEquMaintenanceTask;
 import com.cormen.bim.model.EmsEquMaintenanceTaskCheckIssue;
+import com.cormen.bim.model.EmsEquMaintenanceTaskCheckIssueExample;
+import com.cormen.bim.model.EmsEquMaintenanceTaskExample;
 import com.cormen.bim.service.EmsEquMaintenanceTaskCheckIssueService;
+import com.github.pagehelper.PageHelper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -14,6 +22,9 @@ import java.util.List;
  **/
 @Service
 public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMaintenanceTaskCheckIssueService {
+
+    @Autowired
+    private EmsEquMaintenanceTaskCheckIssueMapper emsEquMaintenanceTaskCheckIssueMapper;
     /**
      * @param param
      * @Author: cormen
@@ -22,7 +33,9 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
      */
     @Override
     public int addIssue(EquMaintenanceTaskIssueParam param) {
-        return 0;
+        EmsEquMaintenanceTaskCheckIssue equMaintenanceTask = new EmsEquMaintenanceTaskCheckIssue();
+        BeanUtils.copyProperties(param, equMaintenanceTask);
+        return  emsEquMaintenanceTaskCheckIssueMapper.insert(equMaintenanceTask);
     }
 
     /**
@@ -34,7 +47,10 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
      */
     @Override
     public int update(int id, EquMaintenanceTaskIssueParam param) {
-        return 0;
+        EmsEquMaintenanceTaskCheckIssue equipment = new EmsEquMaintenanceTaskCheckIssue();
+        BeanUtils.copyProperties(param, equipment);
+        equipment.setId(id);
+        return  emsEquMaintenanceTaskCheckIssueMapper.updateByPrimaryKey(equipment);
     }
 
     /**
@@ -45,7 +61,7 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
      */
     @Override
     public int delete(int id) {
-        return 0;
+        return emsEquMaintenanceTaskCheckIssueMapper.deleteByPrimaryKey(id);
     }
 
     /**
@@ -58,6 +74,11 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
      */
     @Override
     public List<EmsEquMaintenanceTaskCheckIssue> list(String keyword, Integer pageSize, Integer pageNum) {
-        return null;
+        PageHelper.startPage(pageNum, pageSize);
+        EmsEquMaintenanceTaskCheckIssueExample example = new EmsEquMaintenanceTaskCheckIssueExample();
+        if (!StringUtils.isEmpty(keyword)) {
+            example.createCriteria().andIssueLike("%" + keyword + "%");
+        }
+        return emsEquMaintenanceTaskCheckIssueMapper.selectByExample(example);
     }
 }
