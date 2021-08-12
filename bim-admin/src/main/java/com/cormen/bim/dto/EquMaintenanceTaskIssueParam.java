@@ -1,6 +1,8 @@
 package com.cormen.bim.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 
@@ -9,6 +11,8 @@ import javax.validation.constraints.NotEmpty;
  * @Description: XXX Service
  * @DateTime: 2021/8/3 16:24
  **/
+@Getter
+@Setter
 public class EquMaintenanceTaskIssueParam {
     @NotEmpty
     @ApiModelProperty(value = "任务ID")

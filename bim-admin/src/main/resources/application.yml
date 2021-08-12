@@ -48,7 +48,7 @@ redis:
   expire:
     common: 86400 # 24小时
 minio:
-  endpoint: http://192.168.6.132:9090 #MinIO服务所在地址
+  endpoint: http://localhost:9000 #MinIO服务所在地址
   bucketName: bim #存储桶名称
   accessKey: minioadmin #访问的key
   secretKey: minioadmin #访问的秘钥

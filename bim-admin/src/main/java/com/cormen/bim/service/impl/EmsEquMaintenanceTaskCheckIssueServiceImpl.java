@@ -2,17 +2,16 @@ package com.cormen.bim.service.impl;
 
 import com.cormen.bim.dto.EquMaintenanceTaskIssueParam;
 import com.cormen.bim.mapper.EmsEquMaintenanceTaskCheckIssueMapper;
-import com.cormen.bim.model.EmsEquMaintenanceTask;
-import com.cormen.bim.model.EmsEquMaintenanceTaskCheckIssue;
-import com.cormen.bim.model.EmsEquMaintenanceTaskCheckIssueExample;
-import com.cormen.bim.model.EmsEquMaintenanceTaskExample;
+import com.cormen.bim.model.*;
 import com.cormen.bim.service.EmsEquMaintenanceTaskCheckIssueService;
+import com.cormen.bim.service.UmsAdminService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +24,9 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
 
     @Autowired
     private EmsEquMaintenanceTaskCheckIssueMapper emsEquMaintenanceTaskCheckIssueMapper;
+
+    @Autowired
+    private UmsAdminService adminService;
     /**
      * @param param
      * @Author: cormen
@@ -35,6 +37,10 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
     public int addIssue(EquMaintenanceTaskIssueParam param) {
         EmsEquMaintenanceTaskCheckIssue equMaintenanceTask = new EmsEquMaintenanceTaskCheckIssue();
         BeanUtils.copyProperties(param, equMaintenanceTask);
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equMaintenanceTask.setCreatedBy(currentAdmin.getId());
+        equMaintenanceTask.setCreatedTime(new Date());
+
         return  emsEquMaintenanceTaskCheckIssueMapper.insert(equMaintenanceTask);
     }
 
@@ -47,9 +53,12 @@ public class EmsEquMaintenanceTaskCheckIssueServiceImpl implements EmsEquMainten
      */
     @Override
     public int update(int id, EquMaintenanceTaskIssueParam param) {
-        EmsEquMaintenanceTaskCheckIssue equipment = new EmsEquMaintenanceTaskCheckIssue();
+        EmsEquMaintenanceTaskCheckIssue equipment =emsEquMaintenanceTaskCheckIssueMapper.selectByPrimaryKey(id);
         BeanUtils.copyProperties(param, equipment);
-        equipment.setId(id);
+
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equipment.setUpdatedBy(currentAdmin.getId());
+        equipment.setUpdatedTime(new Date());
         return  emsEquMaintenanceTaskCheckIssueMapper.updateByPrimaryKey(equipment);
     }
 

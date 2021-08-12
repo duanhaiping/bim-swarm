@@ -52,9 +52,11 @@ public class EmsEqumentServiceImpl implements EmsEqumentService {
      */
     @Override
     public int updateEqument(int id, EqumentParam equmentParam) {
-        EmsEquipment equipment = new EmsEquipment();
+        EmsEquipment equipment =emsEquipmentMapper.selectByPrimaryKey(id);
         BeanUtils.copyProperties(equmentParam, equipment);
-        equipment.setId(id);
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equipment.setUpdatedBy(currentAdmin.getId());
+        equipment.setUpdatedTime(new Date());
         return  emsEquipmentMapper.updateByPrimaryKey(equipment);
     }
 

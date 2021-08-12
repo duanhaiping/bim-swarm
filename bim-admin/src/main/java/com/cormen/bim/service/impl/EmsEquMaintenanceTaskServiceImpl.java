@@ -4,13 +4,16 @@ import com.cormen.bim.dto.EquMaintenanceTaskParam;
 import com.cormen.bim.mapper.EmsEquMaintenanceTaskMapper;
 import com.cormen.bim.model.EmsEquMaintenanceTask;
 import com.cormen.bim.model.EmsEquMaintenanceTaskExample;
+import com.cormen.bim.model.UmsAdmin;
 import com.cormen.bim.service.EmsEquMaintenanceTaskService;
+import com.cormen.bim.service.UmsAdminService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +26,9 @@ public class EmsEquMaintenanceTaskServiceImpl implements EmsEquMaintenanceTaskSe
 
     @Autowired
     private EmsEquMaintenanceTaskMapper emsEquMaintenanceTaskMapper ;
+
+    @Autowired
+    private UmsAdminService adminService;
     /**
      * @param param
      * @Author: cormen
@@ -33,6 +39,9 @@ public class EmsEquMaintenanceTaskServiceImpl implements EmsEquMaintenanceTaskSe
     public int addTask(EquMaintenanceTaskParam param) {
         EmsEquMaintenanceTask equMaintenanceTask = new EmsEquMaintenanceTask();
         BeanUtils.copyProperties(param, equMaintenanceTask);
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equMaintenanceTask.setCreatedBy(currentAdmin.getId());
+        equMaintenanceTask.setCreatedTime(new Date());
         return  emsEquMaintenanceTaskMapper.insert(equMaintenanceTask);
     }
 
@@ -45,9 +54,11 @@ public class EmsEquMaintenanceTaskServiceImpl implements EmsEquMaintenanceTaskSe
      */
     @Override
     public int update(int id, EquMaintenanceTaskParam param) {
-        EmsEquMaintenanceTask equipment = new EmsEquMaintenanceTask();
+        EmsEquMaintenanceTask equipment = emsEquMaintenanceTaskMapper.selectByPrimaryKey(id);
         BeanUtils.copyProperties(param, equipment);
-        equipment.setId(id);
+        UmsAdmin currentAdmin= adminService.getCurrentAdmin();
+        equipment.setUpdatedBy(currentAdmin.getId());
+        equipment.setUpdatedTime(new Date());
         return  emsEquMaintenanceTaskMapper.updateByPrimaryKey(equipment);
     }
 

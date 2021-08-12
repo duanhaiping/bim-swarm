@@ -39,7 +39,7 @@ public class EquMaintenanceTaskPlanParam {
     private Integer frequencyNumber;
     @NotEmpty
     @ApiModelProperty(value = "经办人")
-    private Integer agent;
+    private Long agent;
     @NotEmpty
     @ApiModelProperty(value = "预算")
     private BigDecimal funds;
